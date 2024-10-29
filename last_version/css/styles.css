@@ -1,5 +1,5 @@
 /* Colur palette
-Orange (#b96a00); Main
+Orange (#b96a00); Main (nuevo)
 White (#f0f0f0): Background 
 Black(#0e0e0e): Text 
 Yellow (#FFE602): Call to Action 
@@ -50,6 +50,7 @@ header {
   padding: 5px;
   box-shadow: -2px 3px 4px 0px #0e0e0e;
 }
+
 
 
 .pages-nav-bar > a, .account-nav-bar > a {
