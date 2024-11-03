@@ -1,0 +1,64 @@
+/*Colour variables - Colour palette*/
+/*Main, standard text colour*/
+/*Secondary. Subtitle font colour, and standard effects colur*/
+/* Background colour and header/footer font colour */
+/* Call to Action colour */
+/*Font size variables*/
+/*Nesting*/
+/*Main*/
+main .call-to-action-button {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+main .call-to-action-button img {
+  width: 30px;
+}
+main .section_fitxes article .fitxa .titol_fitxa {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+main .section_fitxes article .fitxa .titol_fitxa button {
+  width: 80px;
+  height: 50px;
+}
+main .section_fitxes article .fitxa .imatges_fitxa {
+  display: flex;
+  flex-wrap: wrap;
+}
+main .section_fitxes article .fitxa .imatges_fitxa img {
+  max-width: 90vW;
+  padding: 10px;
+  box-shadow: 0px 0px 4px 0px #0e0e0e;
+}
+
+/*Desktop*/
+@media screen and (min-width: 825px) {
+  /*Main*/
+  main {
+    display: grid;
+  }
+  main .call-to-action-button {
+    justify-self: flex-start;
+  }
+  main .section_fitxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    justify-items: center;
+  }
+  main article {
+    max-width: 350px;
+  }
+  main article .imatges_fitxa {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  main article .imatges_fitxa img {
+    width: 90%;
+  }
+}/*# sourceMappingURL=sass_fitxes_tecniques.css.map */
