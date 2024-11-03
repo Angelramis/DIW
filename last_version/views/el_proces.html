@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aula Museu - Sa Balena</title>
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/el_proces.css">
+  <link rel="stylesheet" href="../saas/general/sass_styles.css">
+  <link rel="stylesheet" href="../saas/sass_el_proces.css">
   <script src="../js/script.js"></script>
 </head>
 <body>
@@ -14,46 +14,50 @@
 
       <nav class="logo-container-header">
         <a href="../index.html" class="logo-a">
-          <img src="../assets/logoBalenaFonsClar.png" alt="logo">
+          <img src="../assets/logoBalenaFonsFosc.png" alt="logo">
         </a>
       </nav>
+
+
+      <nav class="pages-nav-bar" id="pages-nav-bar">
+        <a href="../index.html" class="inici-bar">
+          <img src="../assets/icons/home.png" alt="inici" class="icon">
+          <p>Inici</p>
+        </a>
+
+        <a href="" class="historia-bar">
+          <img src="../assets/icons/home.png" alt="historia" class="icon">
+          <p>Història</p>
+        </a>
+
+        <a href="../views/el_proces.html" class="proces-bar">
+          <img src="../assets/icons/el_proces.png" alt="proces" class="icon">
+          <p>El procés</p>
+        </a>
+
+        <a href="../views/noticies.html" class="noticies-bar">
+          <img src="../assets/icons/home.png" alt="noticies" class="icon">
+          <p>Notícies</p>
+        </a>
+
+        <a class="al-voltant-bar" onclick="displayPagesMenu('submenu-nav-bar')">
+          <img src="../assets/icons/home.png" alt="al-voltant" class="icon">
+          <p>Al voltant de la balena</p>
+          <img src="../assets/icons/display_right.png" alt="al-voltant-display" class="icon">
+        </a>
+      </nav>
+
 
       <div class="right_header">
       <nav class="pages-container-header">
       <a class="nav-bar-icon"  onclick="displayPagesMenu('pages-nav-bar')"> <!-- el id de la pagina como parametro-->
         <img src="../assets/icons/menu.png" alt="" class="icon">
       </a>
-        <nav class="pages-nav-bar" id="pages-nav-bar">
-          <a href="../index.html" class="inici-bar">
-            <img src="../assets/icons/home.png" alt="inici" class="icon">
-            <p>Inici</p>
-          </a>
-  
-          <a href="" class="historia-bar">
-            <img src="../assets/icons/home.png" alt="historia" class="icon">
-            <p>Història</p>
-          </a>
-  
-          <a href="" class="proces-bar">
-            <img src="../assets/icons/el_proces.png" alt="proces" class="icon">
-            <p>El procés</p>
-          </a>
-  
-          <a href="" class="noticies-bar">
-            <img src="../assets/icons/home.png" alt="noticies" class="icon">
-            <p>Notícies</p>
-          </a>
-  
-          <a class="al-voltant-bar" onclick="displayPagesMenu('submenu-nav-bar')">
-            <img src="../assets/icons/home.png" alt="al-voltant" class="icon">
-            <p>Al voltant de la balena</p>
-            <img src="../assets/icons/display_right.png" alt="al-voltant-display" class="icon">
-          </a>
-        </nav>
+        
         <!--Submenu aparte para no mostrarlo directemente con menu paginas-->
         <nav class="submenu-nav-bar" id="submenu-nav-bar">
   
-          <a href="" class="fitxes-bar">
+          <a href="../views/fitxes_tecniques.html" class="fitxes-bar">
             <img src="../assets/icons/home.png" alt="fitxes-bar" class="icon">
             <p>Fitxes tècniques</p>
           </a>
@@ -66,10 +70,11 @@
       </nav>
         
       <nav class="account-container-header">
-        <a class="account-icon" onclick="displayPagesMenu('account-nav-bar')">
+      <a class="account-icon" onclick="displayPagesMenu('account-nav-bar')">
+        <p>Compte</p>
         <img src="../assets/icons/account.png" alt="account" class="icon">
       </a>
-      <nav class="account-nav-bar" id="account-nav-bar">
+        <nav class="account-nav-bar" id="account-nav-bar">
           <a href="../views/iniciar_sessio.html" class="login-bar">
             <img src="../assets/icons/login.png" alt="login" class="icon">
             <p>Iniciar sessió</p>
