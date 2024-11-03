@@ -5,12 +5,12 @@
 /*Fuentes descargadas*/
 @font-face { /*main*/
   font-family: 'Open Sans';
-  src: url('/fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+  src: url('../../fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
 }
 
 @font-face { /*Call-to-action*/
   font-family: 'Nunito Sans';
-  src: url('/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf') format('truetype');
+  src: url('../../fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf') format('truetype');
 }
 
 /*General*/
@@ -161,7 +161,7 @@ main {
   display: flex;
   flex-direction: column; /*Contenedores de main verticalmente posicionados*/
   padding: 10px;
-  background-image: url('/assets/paper.jpg');
+  background-image: url('../../assets/paper.jpg');
   min-height: 100vH;
 }
 
