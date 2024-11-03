@@ -137,7 +137,7 @@ main {
   display: flex;
   flex-direction: column; /*Contenedores de main verticalmente posicionados*/
   padding: 10px;
-  background-image: url("/assets/paper.jpg");
+  background-image: url("../../assets/paper.jpg");
   min-height: 100vH;
 }
 
