@@ -1,0 +1,334 @@
+@use 'variables.scss' as *;
+
+
+/*ACCESSIBILITY CONTRAST*/
+
+// grayscale mixin
+@mixin grayscale($color) {      
+
+    * {
+       color: grayscale($color);     
+      }
+      
+    .menu, footer, .pages-nav-bar, .account-nav-bar, .submenu-nav-bar {
+      background-color: grayscale($color); 
+    }
+    
+    img, iframe, input {
+      filter: grayscale(1);
+    }
+}
+
+.grayscale {
+  @include grayscale($colour_black);
+}
+
+/* Dark contrast mixin*/
+@mixin contrast_dark($color) {      
+  $change: 50%;
+
+  * {
+     color: darken($color, $change);     
+    }
+    
+  .menu, footer, .pages-nav-bar, .account-nav-bar, .submenu-nav-bar {
+    background-color: darken($color, $change); 
+  }
+
+  img, iframe, input {
+    filter: contrast(0.6);
+  }
+
+}
+
+.contrast_dark {
+  @include contrast_dark($colour_black);
+}
+
+
+/* Light contrast mixin*/
+@mixin contrast_light($color) {      
+  $change: 40%;
+
+  * {
+     color: lighten($color, $change);     
+    }
+    
+  .menu, footer, .pages-nav-bar, .account-nav-bar, .submenu-nav-bar {
+    background-color: lighten($color, $change); 
+  }
+
+  img, iframe, input {
+    filter: contrast(1);
+  }
+}
+
+.contrast_light {
+  @include contrast_light($colour_black);
+}
+
+/* High saturation mixin*/
+@mixin saturation_high($color) {      
+  $change: 40%;
+
+  * {
+     color: saturate($color, $change);     
+    }
+    
+  .menu, footer, .pages-nav-bar, .account-nav-bar, .submenu-nav-bar {
+    background-color: saturate($color, $change); 
+  }
+
+  img, iframe, input {
+    filter: saturate(5)
+  }
+}
+
+.saturation_high {
+  @include saturation_high($colour_black);
+}
+
+
+/* Low saturation mixin*/
+@mixin saturation_low($color) {      
+  $change: 40%;
+
+  * {
+     color: desaturate($color, $change);     
+    }
+    
+  .menu, footer, .pages-nav-bar, .account-nav-bar, .submenu-nav-bar {
+    background-color: desaturate($color, $change); 
+  }
+
+  img, iframe, input {
+    filter: saturate(0.2)
+  }
+}
+
+.saturation_low {
+  @include saturation_low($colour_black);
+}
+
+
+
+
+/*ACCESSIBILITY FONT*/
+@mixin font_size_small() {      
+    
+  p, label, span, input {
+    font-size: $font_0_5; 
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: $font_1;
+  }
+
+}
+
+@mixin font_size_medium() {      
+    
+  p, label, span, input {
+    font-size: $font_1; 
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: $font_1_5;
+  }
+
+}
+
+@mixin font_size_large() {      
+    
+  p, label, span, input {
+    font-size: $font_1_5; 
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: $font_2;
+  }
+
+}
+
+@mixin font_size_xlarge() {      
+    
+  p, label, span, input {
+    font-size: $font_2; 
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: $font_2_5;
+  }
+
+}
+
+
+.font_size_small {
+  @include font_size_small();
+}
+
+.font_size_medium {
+  @include font_size_medium();
+}
+
+.font_size_large {
+  @include font_size_large();
+}
+
+.font_size_xlarge {
+  @include font_size_xlarge();
+}
+
+
+/*Line spacing*/
+
+@mixin line_spacing_small() {    
+
+  h1, h2, h3, h4, h5, h6, p, label, span{
+    line-height: $font_1;
+  }
+
+}
+
+@mixin line_spacing_medium() {      
+    
+  h1, h2, h3, h4, h5, h6, p, label, span {
+    line-height: $font_1_5;
+  }
+
+}
+
+@mixin line_spacing_large() {      
+    
+  h1, h2, h3, h4, h5, h6, p, label, span {
+    line-height: $font_2;
+  }
+
+}
+
+@mixin line_spacing_xlarge() {      
+    
+  h1, h2, h3, h4, h5, h6, p, label, span {
+    line-height: $font_2_5;
+  }
+
+}
+
+
+.line_spacing_small {
+  @include line_spacing_small();
+}
+
+.line_spacing_medium {
+  @include line_spacing_medium();
+}
+
+.line_spacing_large {
+  @include line_spacing_large();
+}
+
+.line_spacing_xlarge {
+  @include line_spacing_xlarge();
+}
+
+
+/*Word spacing*/
+@mixin word_spacing_small() {    
+
+  h1, h2, h3, h4, h5, h6, p, label, span, input {
+    word-spacing: $font_0;
+  }
+
+}
+
+@mixin word_spacing_medium() {      
+    
+  h1, h2, h3, h4, h5, h6, p, label, span, input {
+    word-spacing: $font_0_5;
+  }
+
+}
+
+@mixin word_spacing_large() {      
+    
+  h1, h2, h3, h4, h5, h6, p, label, span, input {
+    word-spacing: $font_2;
+  }
+
+}
+
+@mixin word_spacing_xlarge() {      
+    
+  h1, h2, h3, h4, h5, h6, p, label, span, input {
+    word-spacing: $font_2_5;
+  }
+
+}
+
+
+.word_spacing_small {
+  @include word_spacing_small();
+}
+
+.word_spacing_medium {
+  @include word_spacing_medium();
+}
+
+.word_spacing_large {
+  @include word_spacing_large();
+}
+
+.word_spacing_xlarge {
+  @include word_spacing_xlarge();
+}
+
+
+/*Letter spacing*/
+@mixin letter_spacing_small() {    
+
+  h1, h2, h3, h4, h5, h6, p, label, span, input {
+    letter-spacing: $letter_spacing_0;
+  }
+
+}
+
+@mixin letter_spacing_medium() {      
+    
+  h1, h2, h3, h4, h5, h6, p, label, span, input {
+    letter-spacing: $letter_spacing_0_5;
+  }
+
+}
+
+@mixin letter_spacing_large() {      
+    
+  h1, h2, h3, h4, h5, h6, p, label, span, input {
+    letter-spacing: $letter_spacing_1;
+  }
+
+}
+
+@mixin letter_spacing_xlarge() {      
+    
+  h1, h2, h3, h4, h5, h6, p, label, span, input {
+    letter-spacing: $letter_spacing_1_5;
+  }
+
+}
+
+
+.letter_spacing_small {
+  @include letter_spacing_small();
+}
+
+.letter_spacing_medium {
+  @include letter_spacing_medium();
+}
+
+.letter_spacing_large {
+  @include letter_spacing_large();
+}
+
+.letter_spacing_xlarge {
+  @include letter_spacing_xlarge();
+}
