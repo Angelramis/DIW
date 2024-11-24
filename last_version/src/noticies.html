@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aula Museu - Sa Balena</title>
-  <link rel="stylesheet" href="../saas/general/sass_styles.css">
-  <link rel="stylesheet" href="../saas/sass_fitxes_tecniques.css">
+  <link rel="stylesheet" href="../saas/general/sass_common.css">
+  <link rel="stylesheet" href="output.css">
   <script src="../js/script.js"></script>
 </head>
 <body>
@@ -34,7 +34,7 @@
           <p>El procés</p>
         </a>
 
-        <a href="../src/noticies.html" class="noticies-bar">
+        <a href="" class="noticies-bar">
           <img src="../assets/icons/news.png" alt="noticies icona" class="icon">
           <p>Notícies</p>
         </a>
@@ -48,7 +48,7 @@
 
       <nav class="submenu-nav-bar" id="submenu-nav-bar">
   
-        <a href="" class="fitxes-bar">
+        <a href="../views/fitxes_tecniques.html" class="fitxes-bar">
           <img src="../assets/icons/fitxes_tec.png" alt="Fitxes tècniques icona" class="icon">
           <p>Fitxes tècniques</p>
         </a>
@@ -92,107 +92,88 @@
       </nav>
     </div>
 
-      
     </nav>
   </header>
 
-  <main>
-    <div class="titulo">
-      <h1>FITXES TÈCNIQUES</h1>
+  <main class="text-center mt-14 flex flex-col p-3 bg-paper min-h-screen items-center gap-3">
+    <div class="titulo mb-2 text-30 font-bold">
+      <h1>NOTÍCIES</h1>
     </div> 
     
+    <button type="button" class="call-to-action-button button-principal self-start">
+      <img src="../assets/icons/mas.png" alt="Crear notícia" class="w-8">Crear notícia
+    </button>
 
-      <button type="button" class="call-to-action-button">
-        <img src="../assets/icons/mas.png" alt="mas">Crear fitxa
-      </button>
+     <section class="noticies">
+      <article class="lg:max-w-96">
+        <a href="noticia.html" class="noticia">
 
-    <section class="section_fitxes">
-      <article>
-        <div class="fitxa">
-
-          <div class="titol_fitxa">
-            <h3>Nom de la fitxa</h3>
-
-            <button type="button" class="call-to-action-button">
-              <img src="../assets/icons/edit.png" alt="mas">
-            </button>
+          <div class="encapcalat_noticia">
+              <div class="titol_subtitol_div">
+                <h2 class="titol_noticia">Nom de la notícia</h2>
+                <h3 class="subtitol_noticia">Subtítol de la notícia</h3>
+              </div>
+                <button type="button" class="call-to-action-button editar h-12 w-20">
+                  <img src="../assets/icons/edit.png" alt="Editar notícia" class="w-10">
+                </button>
           </div>
+
           
-          
-          <div class="imatges_fitxa">
-            <img src="../assets/fitxes/fitxa1/fitxa1_1.jpeg" alt="img_fitxa" class="img_fitxa">
+          <div class="div_img_noticia">
+            <img src="../assets/noticies/noticia1/noticia1_1.jpg" alt="Imatge de la notícia" class="img_noticia pt-1 pb-1 shadow-standard">
+            <p class="p_img_noticia flex">Autor de la imatge. 18/11/2024</p>
           </div>
-        </div>
+        </a>
       </article>
-      <article>
-        <div class="fitxa">
 
-          <div class="titol_fitxa">
-            <h3>Nom de la fitxa</h3>
+      <article class="lg:max-w-96">
+        <a href="noticia.html" class="noticia">
 
-            <button type="button" class="call-to-action-button">
-              <img src="../assets/icons/edit.png" alt="mas">
-            </button>
+          <div class="encapcalat_noticia">
+              <div class="titol_subtitol_div">
+                <h2 class="titol_noticia">Nom de la notícia</h2>
+                <h3 class="subtitol_noticia">Subtítol de la notícia</h3>
+              </div>
+                <button type="button" class="call-to-action-button editar h-12 w-20">
+                  <img src="../assets/icons/edit.png" alt="Editar notícia" class="w-10">
+                </button>
           </div>
+
           
-          
-          <div class="imatges_fitxa">
-            <img src="../assets/fitxes/fitxa1/fitxa1_1.jpeg" alt="img_fitxa" class="img_fitxa">
+          <div class="div_img_noticia">
+            <img src="../assets/noticies/noticia1/noticia1_1.jpg" alt="Imatge de la notícia" class="img_noticia pt-1 pb-1 shadow-standard">
+            <p class="p_img_noticia">Autor de la imatge. 18/11/2024</p>
           </div>
-        </div>
+        </a>
       </article>
-      <article>
-        <div class="fitxa">
 
-          <div class="titol_fitxa">
-            <h3>Nom de la fitxa</h3>
+      <article class="lg:max-w-96">
+        <a href="noticia.html" class="noticia">
 
-            <button type="button" class="call-to-action-button">
-              <img src="../assets/icons/edit.png" alt="mas">
-            </button>
+          <div class="encapcalat_noticia">
+              <div class="titol_subtitol_div">
+                <h2 class="titol_noticia">Nom de la notícia</h2>
+                <h3 class="subtitol_noticia">Subtítol de la notícia</h3>
+              </div>
+                <button type="button" class="call-to-action-button editar h-12 w-20">
+                  <img src="../assets/icons/edit.png" alt="Editar notícia" class="w-10">
+                </button>
           </div>
+
           
-          
-          <div class="imatges_fitxa">
-            <img src="../assets/fitxes/fitxa1/fitxa1_1.jpeg" alt="img_fitxa" class="img_fitxa">
+          <div class="div_img_noticia">
+            <img src="../assets/noticies/noticia1/noticia1_1.jpg" alt="Imatge de la notícia" class="img_noticia pt-1 pb-1 shadow-standard">
+            <p class="p_img_noticia">Autor de la imatge. 18/11/2024</p>
           </div>
-        </div>
+        </a>
       </article>
-      <article>
-        <div class="fitxa">
 
-          <div class="titol_fitxa">
-            <h3>Nom de la fitxa</h3>
+     </section>
 
-            <button type="button" class="call-to-action-button">
-              <img src="../assets/icons/edit.png" alt="mas">
-            </button>
-          </div>
-          
-          
-          <div class="imatges_fitxa">
-            <img src="../assets/fitxes/fitxa1/fitxa1_1.jpeg" alt="img_fitxa" class="img_fitxa">
-          </div>
-        </div>
-      </article>
-      <article>
-        <div class="fitxa">
 
-          <div class="titol_fitxa">
-            <h3>Nom de la fitxa</h3>
 
-            <button type="button" class="call-to-action-button">
-              <img src="../assets/icons/edit.png" alt="mas">
-            </button>
-          </div>
-          
-          
-          <div class="imatges_fitxa">
-            <img src="../assets/fitxes/fitxa1/fitxa1_1.jpeg" alt="img_fitxa" class="img_fitxa">
-          </div>
-        </div>
-      </article>
-    </section>
+
+
 
     <nav class="accessibility_container">
       <div class="accessibility_access">

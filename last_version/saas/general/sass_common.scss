@@ -1,6 +1,6 @@
-@use 'variables.scss' as *; 
+/* sass_common containing css for header, footer and accessibility */
 @use 'accessibility.scss' as *;
-
+@use 'variables.scss' as *;
 
 /*Fuentes descargadas*/
 @font-face { /*main*/
@@ -14,7 +14,6 @@
 }
 
 /*General*/
-
 * {
   padding: 0px;
   margin: 0px;
@@ -34,34 +33,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6, p, label, span {
   max-width: 700px;
-}
-
-/*Mixins*/
-
-/*Button*/
-@mixin button_style($background_colour, $text_colour) {
-  margin: 10px 0px 10px 0px;
-  background-color: $background_colour;
-  color: $text_colour;
-  border-width: 1px;
-  font-size: 15px;
-  cursor: pointer;
-  box-shadow: 0 0 3px 0 $colour_black;
-  width: 160px;
-  height: 50px;
-  align-self: center;
-  font-family: 'Nunito Sans', 'Open Sans';
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-
-/*Highlighting font effect*/
-p::selection, h1::selection, h2::selection, h3::selection,
-h4::selection, h5::selection, label::selection, a::selection, span::selection
-{
-  background-color: $colour_orange_dark;
-  color: $colour_white;
 }
 
 
@@ -158,76 +129,6 @@ header {
 }
 
 
-/* Main */
-
-body {
-  background-color: $colour_white;
-}
-
-main {
-  text-align: center;
-  margin-top: 59px;
-  display: flex;
-  flex-direction: column; /*Contenedores de main verticalmente posicionados*/
-  padding: 10px;
-  background-image: url('../../assets/paper.jpg');
-  min-height: 100vH;
-  align-items: center;
-}
-
-.titulo {
-  margin: 5px 0px 20px 0px;
-  display: flex;
-  justify-content: center;
-}
-
-.titulo > h1 { /*El titulo de cada página*/
-  font-weight: bold;
-  font-size: 30px;
-}
-
-
-section {
-  text-align: center;
-  display: flex;
-  flex-direction: column; 
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-
-section > h4, section > p, section > input[type="button"] {
-  margin: 10px 0px 10px 0px;
-}
-
-input, button {
-  border-radius: 10px;
-  padding: 4px;
-  max-width: 500px;
-  height: 40px;
-  margin: 10px;
-}
-
-input {
-  background-color: $colour_white;
-}
-
-.subtitulo_principal{
-  color: $colour_orange_dark;
-  font-weight: bold;
-  margin: 5px 0px 5px 0px
-}
-
-/*Boton con color estandar de call to action*/
-.call-to-action-button {
-  @include button_style($colour_yellow, $colour_black);
-}
-
-.call-to-action-button:hover {
-  box-shadow: 0 0 5px 0 $colour_black;
-}
-
-
 /*Accesibility*/
 .accessibility_access {
   position: fixed;
@@ -257,9 +158,6 @@ input {
 .img_accessibility {
   width: 100%;
 }
-
-
-
 
 .accessibility_menu_title > h2 {
   background-color: $colour_black;
@@ -349,29 +247,10 @@ footer > p {
   color: $colour_white;
 }
 
-
-/*Otros*/
-form {
-  display: flex;
-  flex-direction: column;
-  margin: 5px;
-  width: 100vW;
-  max-width: 600px;
-}
-
-
-form > input {
-  width: 70%;
-  height: 30px;
-  align-self: center;
-  margin: 5px 0px 5px 0px;
-}
-
-
-
 /*Media queries*/
 /*Desktop*/
 @media screen and (min-width: 825px) {
+
   /*Header*/
   
   .nav-bar-icon { /*El boton desplegable de pages menu*/
@@ -429,13 +308,6 @@ form > input {
     color: $colour_orange_dark;
   }
 
-  /*Main*/
-  .call-to-action-button {
-    margin: 10px;
-    width: 190px;
-    height: 60px;
-  }
-
   /*Accessibility*/
   .accessibility_menu_content {
     display: flex;
@@ -447,6 +319,5 @@ form > input {
     height: 75vH;
     width: 60vW;
   }
-
   
 }
