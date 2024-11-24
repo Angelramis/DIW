@@ -1,0 +1,41 @@
+@use './general/variables.scss' as *;
+
+/* Main */
+
+.imagenes_portfolio {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+
+.imagenes_portfolio > div {
+  margin: 5px;
+}
+
+.imagenes_portfolio > div > img{
+  width: 100%;
+  box-shadow: 0px 0px 4px 0px $colour_black;
+}
+
+@media screen and (min-width: 825px)  {
+
+/*Main*/
+/* main > section {
+  flex-direction: row;
+} */
+
+
+.imagenes_portfolio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+  gap: 50px;
+}
+
+.imagenes_portfolio > div > img{
+  width: 400px;
+}
+
+}

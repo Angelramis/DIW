@@ -1,0 +1,16 @@
+/*Main */
+.balena-3d-div > iframe { /*Longitudes ballena 3D*/
+  height: 35vW;
+  width: 90vW;
+  margin: 5px;
+  box-shadow: 0px 0px 3px 0px #0e0e0e;
+}
+
+
+
+/*Media queries*/
+/*Desktop*/
+/*No necesario por ahora*/
+@media screen and (min-width: 825px) {
+  
+}

@@ -1,0 +1,26 @@
+@use './general/variables.scss' as *;
+
+.contrassenya_oblidada_a {
+  text-decoration: underline;
+}
+
+.contrassenya_oblidada_a:hover {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 825px)  {
+
+  section > form > label {
+    margin: 10px;
+  }
+
+  .input_form {
+    width: 300px;
+  }
+
+  .contrassenya_oblidada_a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+}
