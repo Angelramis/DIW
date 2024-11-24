@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Clases reutilables*/
+@layer components {
+  .input_diw {
+    @apply flex justify-center m;
+    
+  }
+}
