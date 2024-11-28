@@ -1,0 +1,452 @@
+@use 'variables.scss' as *; 
+@use 'accessibility.scss' as *;
+
+
+/*Fuentes descargadas*/
+@font-face { /*main*/
+  font-family: 'Open Sans';
+  src: url('../../fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+}
+
+@font-face { /*Call-to-action*/
+  font-family: 'Nunito Sans';
+  src: url('../../fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf') format('truetype');
+}
+
+/*General*/
+
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Open Sans', 'Nunito Sans';
+  color: $colour_black;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+p, label, span {
+  font-size: $font_1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: $font_1_5;
+}
+
+h1, h2, h3, h4, h5, h6, p, label, span {
+  max-width: 700px;
+}
+
+/*Mixins*/
+
+/*Button*/
+@mixin button_style($background_colour, $text_colour) {
+  margin: 10px 0px 10px 0px;
+  background-color: $background_colour;
+  color: $text_colour;
+  border-width: 1px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 0 3px 0 $colour_black;
+  width: 160px;
+  height: 50px;
+  align-self: center;
+  font-family: 'Nunito Sans', 'Open Sans';
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+
+/*Highlighting font effect*/
+p::selection, h1::selection, h2::selection, h3::selection,
+h4::selection, h5::selection, label::selection, a::selection, span::selection
+{
+  background-color: $colour_orange_dark;
+  color: $colour_white;
+}
+
+
+/*Header*/
+
+header {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  right: 0;
+  left: 0;
+  box-shadow: 0px 2px 4px 0px $colour_black;
+  z-index: 3;
+  background-color: $colour_black;
+}
+
+
+/*Menus desplegables por defecto ocultos*/
+.pages-nav-bar, .account-nav-bar, .submenu-nav-bar, .accessibility_menu {
+  display: none;
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+  left: 30px;
+  top: 58px;
+  padding: 5px;
+  box-shadow: 0px 2px 5px $colour_black;
+  background-color: $colour_black;
+  color: $colour_white;
+}
+
+.submenu-nav-bar {
+  z-index: 6;
+  left: 40vW;
+}
+
+.pages-nav-bar > a, .account-nav-bar > a, .submenu-nav-bar > a {
+  display: flex;
+  align-items: center;
+}
+
+.pages-nav-bar > a > p, .account-nav-bar > a > p, .submenu-nav-bar > a > p {
+  color: $colour_white;
+}
+
+.account-nav-bar {
+  width: 100%;
+  left: 30vW; /*% a anchura de la pagina*/
+}
+
+
+/*Iconos del Header*/
+.icon, .seccions-icon, .account-icon, .logo-a > img { 
+ width: 45px;
+}
+
+.icon {
+  padding-right: 10px;
+}
+
+.account-icon > p {
+  display: none;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: $colour_black;
+}
+
+
+
+/* Clase para pages_menu de evento onClick desplegable*/
+.show_menu {
+  display: flex;
+  flex-direction: column;
+  transition: width 2s;
+}
+
+.logo-container-header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+
+.right_header {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+
+/* Main */
+
+body {
+  background-color: $colour_white;
+}
+
+main {
+  text-align: center;
+  margin-top: 59px;
+  display: flex;
+  flex-direction: column; /*Contenedores de main verticalmente posicionados*/
+  padding: 10px;
+  background-image: url('../../assets/paper.jpg');
+  min-height: 100vH;
+  align-items: center;
+}
+
+.titulo {
+  margin: 5px 0px 20px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.titulo > h1 { /*El titulo de cada página*/
+  font-weight: bold;
+  font-size: 30px;
+}
+
+
+section {
+  text-align: center;
+  display: flex;
+  flex-direction: column; 
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+
+section > h4, section > p, section > input[type="button"] {
+  margin: 10px 0px 10px 0px;
+}
+
+input, button {
+  border-radius: 10px;
+  padding: 4px;
+  max-width: 500px;
+  height: 40px;
+  margin: 10px;
+}
+
+input {
+  background-color: $colour_white;
+}
+
+.subtitulo_principal{
+  color: $colour_orange_dark;
+  font-weight: bold;
+  margin: 5px 0px 5px 0px
+}
+
+/*Boton con color estandar de call to action*/
+.call-to-action-button {
+  @include button_style($colour_yellow, $colour_black);
+}
+
+.call-to-action-button:hover {
+  box-shadow: 0 0 5px 0 $colour_black;
+}
+
+
+/*Accesibility*/
+.accessibility_access {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  background-color: $colour_black;
+  border-radius: 10px;
+  width: 50px;
+  border: 1px solid $colour_white;
+  z-index: 5;
+}
+
+.accessibility_menu {
+  position: fixed;
+  border: 1px solid $colour_white;
+  border-radius: 5px;
+  z-index: 6;
+  left: 0px;
+  width: 90vW;
+  bottom: 0px;
+  top: auto;
+  height: 350px;
+  background-image: url('../../assets/paper.jpg');
+  overflow-y: scroll;
+  overflow-x: scroll; /* Activar desplazamiento lateral en caso necesario */
+}
+
+.img_accessibility {
+  width: 100%;
+}
+
+
+
+
+.accessibility_menu_title > h2 {
+  background-color: $colour_black;
+  color: $colour_white;
+  border-radius: 5px;
+}
+
+.accessibility_config_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.accessibility_config_title > img {
+  width: 30px;
+}
+
+
+.accessibility_config_buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
+}
+
+.accessibility_button {
+ max-width: 150px;
+ min-width: 100px;
+ height: 50px;
+}
+
+.accessibility_button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.active_button {
+  font-weight: bold;
+  background-color: $colour_yellow;
+}
+
+.accessibility_config_ranges {
+ display: flex;
+ flex-direction: column;
+}
+
+.accessibility_range_div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.close_accessibility {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close_accessibility > input[type='button'] {
+  padding: 0px 50px;
+}
+
+.accessibility_access:hover {
+  cursor: pointer;
+}
+
+.close_accessibility > input[type='button']:hover {
+  cursor: pointer;
+}
+
+/*Footer*/
+
+footer {
+  display: block;
+  position: relative;
+  height: 70px;
+  box-shadow: 1px -1px 4px 0px $colour_black;
+  bottom: 0;
+  background-color: $colour_black;
+  padding: 5px;
+}
+
+footer > p {
+  color: $colour_white;
+}
+
+
+/*Otros*/
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  width: 100vW;
+  max-width: 600px;
+}
+
+
+form > input {
+  width: 70%;
+  height: 30px;
+  align-self: center;
+  margin: 5px 0px 5px 0px;
+}
+
+
+
+/*Media queries*/
+/*Desktop*/
+@media screen and (min-width: 825px) {
+  /*Header*/
+  
+  .nav-bar-icon { /*El boton desplegable de pages menu*/
+    display: none;
+  }
+
+  .pages-nav-bar {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    height: 40px;
+    top: 0;
+    width: max-content;
+    gap: 4vW;
+  }
+
+  .pages-nav-bar > a > p, .account-nav-bar > a > p, .submenu-nav-bar > a > p{
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .pages-nav-bar > a > p:hover, .account-nav-bar > a > p:hover, .submenu-nav-bar > a > p:hover {
+    color: $colour_orange_dark;
+    cursor: pointer;
+  }
+
+  .pages-nav-bar > a > img {
+    display: none;
+  }
+
+  .account-nav-bar {
+    left: 60vW;
+  }
+
+  .account-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .account-icon > p {
+    display: block;
+    transition: 0.3s;
+    color: $colour_white;
+  }
+  
+  .account-icon:hover {
+    cursor: pointer;
+  }
+
+  .account-icon > p:hover {
+    display: block;
+    color: $colour_orange_dark;
+  }
+
+  /*Main*/
+  .call-to-action-button {
+    margin: 10px;
+    width: 190px;
+    height: 60px;
+  }
+
+  /*Accessibility*/
+  .accessibility_menu_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .accessibility_menu {
+    height: 75vH;
+    width: 60vW;
+  }
+
+  
+}
