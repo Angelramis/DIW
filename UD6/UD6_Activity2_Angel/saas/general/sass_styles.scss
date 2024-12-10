@@ -24,7 +24,7 @@
   list-style-type: none;
 }
 
-p, label, span {
+p, label, span, input {
   font-size: $font_1;
 }
 
@@ -259,9 +259,6 @@ input {
   width: 100%;
 }
 
-
-
-
 .accessibility_menu_title > h2 {
   background-color: $colour_black;
   color: $colour_white;
@@ -279,7 +276,6 @@ input {
 .accessibility_config_title > img {
   width: 30px;
 }
-
 
 .accessibility_config_buttons {
   display: grid;

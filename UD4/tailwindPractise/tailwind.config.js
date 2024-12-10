@@ -2,7 +2,7 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: { /* Elementos especificos generales reutilizables */
+    extend: { /* Elementos reutilizables */
       colors: {
         "action_color": "#fde953"
       },

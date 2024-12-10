@@ -1,0 +1,51 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  padding: 20px;
+  background-color: #f0f0f0;
+  color: #333;
+  text-align: center;
+}
+
+.todo-container, #todo-list {
+  max-width: 400px;
+  margin: 20px auto;
+  list-style-type: none;
+}
+
+li {
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #cccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+li:hover {
+  background-color: #ff8e37;
+}
+
+label {
+  font-weight: bold;
+  padding-right: 5px;
+}
+
+input, select {
+  padding: 5px;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 30px;
+  border: none;
+  background-color: #333;
+  color: #f0f0f0;
+  cursor: pointer;
+}
+

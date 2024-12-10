@@ -86,7 +86,7 @@ function toggleLetterSpacing() {
   }
 }
 
-/*Al clickar boton de accesibilidad, aplicar nueva apariencia*/
+/*Al clicar boton de accesibilidad, aplicar nueva apariencia*/
 function activeButton(id) {
   button = document.getElementById(id);
   button.classList.toggle("active_button");

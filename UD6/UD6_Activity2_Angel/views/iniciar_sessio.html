@@ -6,7 +6,6 @@
   <title>Aula Museu - Sa Balena</title>
   <link rel="stylesheet" href="../css/sass_styles.css">
   <link rel="stylesheet" href="../css/sass_iniciar_sessio.css">
-  <script src="../js/script.js"></script>
 </head>
 <body>
   <header>
@@ -102,14 +101,16 @@
     </div>
     
     <section>
-      <form action="">
+      <form action="" id="formLogin">
         <label>Correu electrònic</label>
-        <input type="text" name="email" aria-label="Insertar email" autocomplete="email" class="input_form" aria-required="true" required>
+        <input type="text" name="email" aria-label="Insertar email" autocomplete="email" class="input_form" aria-required="true" required id="loginEmail">
 
         <label>Contrassenya</label>
-        <input type="password" name="password" aria-label="Insertar contrassenya" aria-required="true" required class="input_form">
+        <input type="password" name="password" aria-label="Insertar contrassenya" aria-required="true" required class="input_form" id="loginPassword">
 
-        <input type="button" value="Acceptar" class="call-to-action-button" aria-label="Acceptar">
+        <p class="error"></p>
+
+        <input type="submit" value="Acceptar" class="call-to-action-button" aria-label="Acceptar">
 
         <a class="contrassenya_oblidada_a">Contrassenya oblidada</a>
 
@@ -194,6 +195,12 @@
     <p>IES Joan Ramis i Ramis</p>
     <p>Projecte Aula Museu - La Balena</p>
   </footer>
-  <script src="../js/script.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="../js/jquery-3.7.1.min.js"></script>
+  <script src="../js/login_functions.js"></script>
+  <script src="../js/users.js"></script>
+  <script src="../js/login.js"></script>
+  <script src="../js/js_general.js"></script>
 </body>
 </html>
