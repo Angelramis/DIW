@@ -326,6 +326,10 @@ input {
   margin: 5px 0px 5px 0px;
 }
 
+.error {
+  color: red;
+}
+
 /*Boton con color estandar de call to action*/
 .call-to-action-button {
   margin: 10px 0px 10px 0px;
