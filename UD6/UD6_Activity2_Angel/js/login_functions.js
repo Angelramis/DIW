@@ -16,19 +16,50 @@ function generateSalt() {
   return CryptoJS.lib.WordArray.random(16).toString();
 }
 
-// Funcion para comprobar la longitud de la contraseña
-function validatePasswordLength(password, min, max) {
-  if (password.value.length < min ) {
-    console.log(password, ' ha de tenir al menys ' + min + " caràcters");
-  } else if (password.value.length > max) {
-    console.log(password, ' ha de tenir màxim ' + max + " caràcters");
-  } else {
-    console.log(password);
-  }
+// Función para actualizar el parágrafo de errorHTML.
+function showError(errorHTML, message) {
+  errorHTML = $("#text_error");
+  errorHTML.html(message);
 }
 
-// Funcion para comprobar que el password tenga mínimo
-// una minuscula, mayuscula y un carácter especial
+
+// Función para comprobar sintaxis del password: 
+// mínimo una minuscula, mayuscula, carácter especial, longitud mínima y máxima.
 function validatePasswordSyntax(password) {
+  let lowerLetters = /[a-z]/g;
+  let upperLetters = /[A-Z]/g;
+  let numbers = /[0-9]/g;
+  let specialChars = "[!@#$%?=*&]";
+  let correctSyntax = true;
+  let errorHTML = ""; 
   
+  // Validar longitud
+  if (password.length < 12 ) {
+    showError(errorHTML, "La contrasenya ha de tenir al menys 12 caràcters.");
+    return;
+  } else if (password.length > 25) {
+    showError(errorHTML, "La contrasenya ha de tenir màxim 25 caràcters.");
+    return;
+  }
+
+  // Validar carácteres
+  if (!password.match(lowerLetters)) {
+    correctSyntax = false;
+  }
+
+  if (!password.match(upperLetters)) {
+    correctSyntax = false;
+  }
+
+  if (!password.match(numbers)) {
+    correctSyntax = false;
+  }
+
+  if (!password.match(specialChars)) {
+    correctSyntax = false;
+  }
+
+  if (correctSyntax == false) {
+    showError(errorHTML, "La contrassenya requireix al menys una lletra minúscula, majúscula i un carácter especial.");
+  }
 }

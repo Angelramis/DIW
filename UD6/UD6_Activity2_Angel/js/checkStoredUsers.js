@@ -1,8 +1,8 @@
-/* Verificar si hay usuario en localStorage */
+/* Verificar si hay usuarios en localStorage */
 
 $(document).ready(function () {
 
-  // Si no existe el usuario, crearlo 
+  // Si no existen usuarios guardados, crear uno por defecto
   if (!localStorage.getItem('users')) {
 
     // Encriptación password
@@ -30,12 +30,9 @@ $(document).ready(function () {
       is_first_login: true
     };
     
-    // Guardar usuario en LS
+    // Guardar usuario por defecto en LS
     localStorage.setItem('users', JSON.stringify([defaultUser]));
     console.log(defaultUser);
   }
-
-
-  
 
 });
