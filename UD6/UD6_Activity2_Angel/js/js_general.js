@@ -2,6 +2,8 @@ function displayPagesMenu(id) {
   document.getElementById(id).classList.toggle("show_menu");
 }
 
+/* ACCESSIBILITY */
+
 /*Clase pasada como parámetro*/
 function toggleContrast(contrastClass) {
   document.body.classList.toggle(contrastClass);

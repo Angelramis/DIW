@@ -18,6 +18,7 @@ $(document).ready(function () {
 
     // Buscar usuario por email
     let user = users.find(user => user.email == email);
+    console.log(user); 
 
     // Verificación si los campos están vacíos
     if (email == "" || password == "") {
@@ -36,6 +37,10 @@ $(document).ready(function () {
       showError(errorHTML, "Contrassenya incorrecta");
       return;
     }
+
+    // Guardar el usuario correcto para tener sus datos en todas las páginas.
+    // Cambios de usuario hacerlos en users.
+    let loggedUser = localStorage.setItem('loggedUser', JSON.stringify(user));
 
     // Redirección de usuario si los campos son correctos
     if (user.is_first_login) {
