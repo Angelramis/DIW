@@ -1,4 +1,22 @@
+/* Body */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Main */
+main {
+  max-width: 900px;
+  background-image: none;
+}
+
+/* Starting options */
+.edit-users-start {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .call-to-action-button {
   display: flex;
@@ -10,4 +28,142 @@
 
 .call-to-action-button > img{
   width: 30px;
+}
+
+.nav-user-search {
+  display: flex;
+  flex-direction: row;
+}
+
+#inputSearch {
+  margin-right: 0;
+  border: 2px solid #0e0e0e;
+}
+
+.search-submit {
+  width: 50px;
+  margin-left: 3px;
+  border: 2px solid #0e0e0e;
+  cursor: pointer;
+}
+
+.search-submit > img {
+  width: 30px;
+}
+
+#inputSearch:hover, .search-submit:hover {
+  transition: 0.3s;
+  box-shadow: 0 0 5px 0 #0e0e0e;
+}
+
+.permissions-legend-div {
+  border: 1px solid #0e0e0e;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 0 15px 0;
+}
+
+.permissions-legend-div > p:nth-child(1) {
+  font-weight: bold;
+}
+
+/* Section */
+.users-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Individual user table */
+.user-table {
+  border: 1px solid #0e0e0e;
+  width: 90vW;
+}
+
+.user-table > tbody > tr, .user-table > tbody > tr> td {
+  border: 1px solid #0e0e0e;
+}
+
+/* Celdas indicando tipo de información*/
+.user-table > tbody > tr> td:nth-child(1) {
+  font-weight: bold;
+}
+
+.user-management-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.user-table > tbody > tr > td {
+  padding: 4px;
+}
+
+/* Segunda celda editar usuario*/
+.user-management-tr > td:nth-child(2) {
+  padding: 0;
+}
+
+.user-management-div > a {
+  font-weight: bold;
+  border-right: 1px solid #0e0e0e;
+  border-left: 1px solid #0e0e0e;
+  width: 50%;
+  padding: 8px;
+  background-color: #FFE602;
+}
+
+.user-management-div > a:hover {
+  transition: 0.3s;
+  box-shadow: 0 0 5px 0 #0e0e0e;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  width: 100%;
+}
+
+/*Media queries*/
+/*Desktop*/
+@media screen and (min-width: 825px) {
+  /* Main */
+  /* Starting options */
+  .edit-users-start {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #inputSearch {
+    width: 300px;
+  }
+
+  .search-submit {
+    width: 80px;
+  }
+
+  .permissions-legend-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    width: 400px;
+    height: 50px;
+  }
+
+
+  /* Section */
+  .users-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+  }
+
+  .user-table {
+    max-width: 300px;
+    flex: 1;
+  }
 }
