@@ -7,8 +7,9 @@ function hashPassword(password, salt) {
 
 // Función validar contraseña
 function validatePassword(password, hash, salt) {
+  
   const passwordHash = hashPassword(password, salt);
-  return passwordHash == hash;
+  return passwordHash === hash;
 }
 
 // Función generar salt para contraseña

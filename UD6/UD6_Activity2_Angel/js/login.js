@@ -5,7 +5,7 @@ $(document).ready(function () {
   $("#formLogin").on("submit", function (e) {
     e.preventDefault();
     
-    // Elementos del DOM
+    // Obtener elementos del DOM
     let email = $("#loginEmail").val();
     let password = $("#loginPassword").val();
     let errorHTML = $("#text_error");
@@ -38,9 +38,9 @@ $(document).ready(function () {
       return;
     }
 
-    // Guardar el usuario correcto para tener sus datos en todas las páginas.
-    // Cambios de usuario hacerlos en users.
-    let loggedUser = localStorage.setItem('loggedUser', JSON.stringify(user));
+    // Guardar el usuario en LS para tener sus datos en todas las páginas.
+    // Cambios de usuario hacerlos en LS users.
+    localStorage.setItem('loggedUser', JSON.stringify(user));
 
     // Redirección de usuario si los campos son correctos
     if (user.is_first_login) {

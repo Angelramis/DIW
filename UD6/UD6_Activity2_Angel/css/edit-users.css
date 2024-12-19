@@ -119,11 +119,6 @@ main {
   cursor: pointer;
 }
 
-/* Footer */
-footer {
-  width: 100%;
-}
-
 /*Media queries*/
 /*Desktop*/
 @media screen and (min-width: 825px) {

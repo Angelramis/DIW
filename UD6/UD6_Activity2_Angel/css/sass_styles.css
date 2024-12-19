@@ -250,6 +250,7 @@ header {
   justify-content: space-between;
   padding: 5px;
   background-color: #0e0e0e;
+  align-items: center;
 }
 
 /* Clase para pages_menu de evento onClick desplegable*/
@@ -328,6 +329,10 @@ input {
 
 .error {
   color: red;
+}
+
+.hide {
+  display: none !important;
 }
 
 /*Boton con color estandar de call to action*/
@@ -461,6 +466,7 @@ footer {
   bottom: 0;
   background-color: #0e0e0e;
   padding: 5px;
+  width: 100%;
 }
 
 footer > p {
