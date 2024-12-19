@@ -119,6 +119,7 @@ main {
   cursor: pointer;
 }
 
+
 /*Media queries*/
 /*Desktop*/
 @media screen and (min-width: 825px) {
@@ -157,8 +158,26 @@ main {
     justify-content: center;
   }
 
+  /* Esconder versión mobile de tablas */
   .user-table {
-    max-width: 300px;
-    flex: 1;
+    display: none;
   }
+
+  .user-table-desktop, .user-table-desktop > thead > tr > td, 
+  .user-table-desktop > tbody > tr, .user-table-desktop > tbody > tr> td
+  {
+    border: 1px solid #0e0e0e;
+    padding: 5px;
+  }
+
+  .user-table-desktop > tbody > tr > .user-management-td {
+    padding: 0px;
+  }
+
+  .user-table-desktop > thead > tr > td {
+    font-weight: bold;
+  }
+
+   
+
 }

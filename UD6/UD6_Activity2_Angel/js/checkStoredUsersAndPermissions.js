@@ -13,20 +13,22 @@ function checkLogout() {
 
   loggedUser = localStorage.getItem('loggedUser');
 
+  // Si no está logeado
   if (!loggedUser) {
     $(logout_a).addClass("hide");
     $(admin_a).addClass("hide");
+    $(login_bar).removeClass("hide");
   } else if (loggedUser) {
     $(logout_a).removeClass("hide");
-    $(admin_a).removeClass("hide");
     $(login_bar).addClass("hide");
+    
+    // Si el usuario tiene permisos de editar
+    if (loggedUser.edit_users) {
+      $(admin_a).removeClass("hide");
+    }
+    
   }
 }
-
-$(document).click(function () {
-
-
-});
 
 /* Verificar si hay usuarios en localStorage */
 $(document).ready(function () {
