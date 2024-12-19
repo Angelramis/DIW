@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aula Museu - Sa Balena</title>
-  <link rel="stylesheet" href="../saas/general/sass_common.css">
+  <link rel="stylesheet" href="../css/sass_common.css">
   <link rel="stylesheet" href="output.css">
-  <script src="../js/script.js"></script>
 </head>
 <body>
   <header>
@@ -65,7 +64,6 @@
         <img src="../assets/icons/menu.png" alt="Menu icon" class="icon">
       </a>
         
- 
       </nav>
         
       <nav class="account-container-header">
@@ -79,12 +77,12 @@
             <p>Iniciar sessió</p>
           </a>
   
-          <a href="" class="logout-bar">
+          <a class="logout-bar">
             <img src="../assets/icons/logout.png" alt="logout" class="icon">
             <p>Tancar sessió</p>
           </a>
   
-          <a href="" class="user-admin-bar">
+          <a href="../views/edit_users.html" class="user-admin-bar">
             <img src="../assets/icons/admin.png" alt="user-admin" class="icon">
             <p>Administració d'usuaris</p>
           </a>
@@ -106,7 +104,7 @@
 
 
       <div class="div_imatge_noticia flex flex-col lg:self-center">
-        <img src="../assets/noticies/noticia1/noticia1_01.jpg" alt="Imatge de la notícia" class="img_noticia pt-1 pb-1 shadow-standard">
+        <img src="../assets/noticies/noticia1/noticia1_01.png" alt="Imatge de la notícia" class="img_noticia pt-1 pb-1 shadow-standard">
         <p class="p_img_noticia">Autor de la imatge. 18/11/2024</p>
       </div>
       
@@ -121,7 +119,7 @@
       <div class="contingut_noticia_costat">
         
         <div class="div_imatge_noticia flex flex-col lg:self-center">
-          <img src="../assets/noticies/noticia1/noticia1_01.jpg" alt="Imatge de la notícia" class="img_noticia pt-1 pb-1 shadow-standard">
+          <img src="../assets/noticies/noticia1/noticia1_01.png" alt="Imatge de la notícia" class="img_noticia pt-1 pb-1 shadow-standard">
           <p class="p_img_noticia">Autor de la imatge. 18/11/2024</p>
         </div>
 
@@ -218,16 +216,14 @@
 
   </main>
 
-
-
-
-
-    
-
   <footer>
     <p>IES Joan Ramis i Ramis</p>
     <p>Projecte Aula Museu - La Balena</p>
   </footer>
-  <script src="../js/script.js"></script>
+  
+  <script src="../js/jquery-3.7.1.min.js"></script>
+  <script src="../js/login_functions.js"></script>
+  <script src="../js/checkStoredUsersAndPermissions.js"></script>
+  <script src="../js/js_general.js"></script>
 </body>
 </html>

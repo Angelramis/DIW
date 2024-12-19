@@ -87,7 +87,7 @@ header {
 
 /*Iconos del Header*/
 .icon, .seccions-icon, .account-icon, .logo-a > img { 
- width: 45px;
+ width: 50px;
 }
 
 .icon {
@@ -105,8 +105,12 @@ header {
   justify-content: space-between;
   padding: 5px;
   background-color: $colour_black;
+  align-items: center;
 }
 
+.hide {
+  display: none !important;
+}
 
 
 /* Clase para pages_menu de evento onClick desplegable*/
@@ -120,7 +124,6 @@ header {
   display: flex;
   justify-content: flex-start;
 }
-
 
 
 .right_header {

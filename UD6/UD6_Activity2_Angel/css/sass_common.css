@@ -219,7 +219,7 @@ header {
 
 /*Iconos del Header*/
 .icon, .seccions-icon, .account-icon, .logo-a > img {
-  width: 45px;
+  width: 50px;
 }
 
 .icon {
@@ -238,6 +238,10 @@ header {
   padding: 5px;
   background-color: #0e0e0e;
   align-items: center;
+}
+
+.hide {
+  display: none !important;
 }
 
 /* Clase para pages_menu de evento onClick desplegable*/

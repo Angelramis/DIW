@@ -2,9 +2,11 @@ function displayPagesMenu(id) {
   document.getElementById(id).classList.toggle("show_menu");
 }
 
+/* ACCESSIBILITY */
+
 /*Clase pasada como parámetro*/
 function toggleContrast(contrastClass) {
- document.body.classList.toggle(contrastClass);
+  document.body.classList.toggle(contrastClass);
 }
 
 /*Font size*/
@@ -86,7 +88,7 @@ function toggleLetterSpacing() {
   }
 }
 
-/*Al clickar boton de accesibilidad, aplicar nueva apariencia*/
+/*Al clicar boton de accesibilidad, aplicar nueva apariencia*/
 function activeButton(id) {
   button = document.getElementById(id);
   button.classList.toggle("active_button");

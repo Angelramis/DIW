@@ -1,4 +1,4 @@
-/* sass_common containing css for header, footer and accessibility */
+@charset "UTF-8";
 /*Colour variables - Colour palette*/
 /*Main, standard text colour*/
 /*Secondary. Subtitle font colour, and standard effects colur*/
@@ -159,7 +159,7 @@
   list-style-type: none;
 }
 
-p, label, span {
+p, label, span, input {
   font-size: 1rem;
 }
 
@@ -169,6 +169,19 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6, p, label, span {
   max-width: 700px;
+}
+
+/*Mixins*/
+/*Button*/
+/*Highlighting font effect*/
+p::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, label::-moz-selection, a::-moz-selection, span::-moz-selection {
+  background-color: #b96a00;
+  color: #f0f0f0;
+}
+p::selection, h1::selection, h2::selection, h3::selection,
+h4::selection, h5::selection, label::selection, a::selection, span::selection {
+  background-color: #b96a00;
+  color: #f0f0f0;
 }
 
 /*Header*/
@@ -237,6 +250,7 @@ header {
   justify-content: space-between;
   padding: 5px;
   background-color: #0e0e0e;
+  align-items: center;
 }
 
 /* Clase para pages_menu de evento onClick desplegable*/
@@ -254,6 +268,92 @@ header {
 .right_header {
   display: flex;
   flex-wrap: nowrap;
+}
+
+/* Main */
+body {
+  background-color: #f0f0f0;
+}
+
+main {
+  text-align: center;
+  margin-top: 59px;
+  display: flex;
+  flex-direction: column; /*Contenedores de main verticalmente posicionados*/
+  padding: 10px;
+  background-image: url("../../assets/paper.jpg");
+  min-height: 100vH;
+  align-items: center;
+}
+
+.titulo {
+  margin: 5px 0px 20px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.titulo > h1 { /*El titulo de cada página*/
+  font-weight: bold;
+  font-size: 30px;
+}
+
+section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+section > h4, section > p, section > input[type=button] {
+  margin: 10px 0px 10px 0px;
+}
+
+input, button {
+  border-radius: 10px;
+  padding: 4px;
+  max-width: 500px;
+  height: 40px;
+  margin: 10px;
+}
+
+input {
+  background-color: #f0f0f0;
+}
+
+.subtitulo_principal {
+  color: #b96a00;
+  font-weight: bold;
+  margin: 5px 0px 5px 0px;
+}
+
+.error {
+  color: red;
+}
+
+.hide {
+  display: none !important;
+}
+
+/*Boton con color estandar de call to action*/
+.call-to-action-button {
+  margin: 10px 0px 10px 0px;
+  background-color: #FFE602;
+  color: #0e0e0e;
+  border-width: 1px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 0 3px 0 #0e0e0e;
+  width: 160px;
+  height: 50px;
+  align-self: center;
+  font-family: "Nunito Sans", "Open Sans";
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.call-to-action-button:hover {
+  box-shadow: 0 0 5px 0 #0e0e0e;
 }
 
 /*Accesibility*/
@@ -280,6 +380,7 @@ header {
   height: 350px;
   background-image: url("../../assets/paper.jpg");
   overflow-y: scroll;
+  overflow-x: scroll; /* Activar desplazamiento lateral en caso necesario */
 }
 
 .img_accessibility {
@@ -360,16 +461,32 @@ header {
 footer {
   display: block;
   position: relative;
-  width: 100%;
   height: 70px;
   box-shadow: 1px -1px 4px 0px #0e0e0e;
   bottom: 0;
   background-color: #0e0e0e;
   padding: 5px;
+  width: 100%;
 }
 
 footer > p {
   color: #f0f0f0;
+}
+
+/*Otros*/
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  width: 100vW;
+  max-width: 600px;
+}
+
+form > input {
+  width: 70%;
+  height: 30px;
+  align-self: center;
+  margin: 5px 0px 5px 0px;
 }
 
 /*Media queries*/
@@ -422,6 +539,12 @@ footer > p {
     display: block;
     color: #b96a00;
   }
+  /*Main*/
+  .call-to-action-button {
+    margin: 10px;
+    width: 190px;
+    height: 60px;
+  }
   /*Accessibility*/
   .accessibility_menu_content {
     display: flex;
@@ -432,4 +555,4 @@ footer > p {
     height: 75vH;
     width: 60vW;
   }
-}/*# sourceMappingURL=sass_common.css.map */
+}/*# sourceMappingURL=sass_styles.css.map */

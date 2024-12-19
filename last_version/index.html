@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aula Museu - Sa Balena</title>
-  <link rel="stylesheet" href="./saas/general/sass_styles.css">
-  <link rel="stylesheet" href="./saas/sass_index.css">
-  <script src="./js/script.js"></script>
+  <link rel="stylesheet" href="./css/sass_styles.css">
+  <link rel="stylesheet" href="./css/sass_index.css">
+  <script src="./js/js_general.js"></script>
 </head>
 <body>
   <header>
@@ -79,12 +79,12 @@
             <p>Iniciar sessió</p>
           </a>
   
-          <a href="" class="logout-bar">
+          <a class="logout-bar" id="logout-a">
             <img src="./assets/icons/logout.png" alt="logout" class="icon">
             <p>Tancar sessió</p>
           </a>
   
-          <a href="" class="user-admin-bar">
+          <a href="./views/edit_users.html" class="user-admin-bar" id="admin-a">
             <img src="./assets/icons/admin.png" alt="user-admin" class="icon">
             <p>Administració d'usuaris</p>
           </a>
@@ -188,17 +188,14 @@
     </nav>
 
   </main>
-
-
-
-
-
-    
-
   <footer>
     <p>IES Joan Ramis i Ramis</p>
     <p>Projecte Aula Museu - La Balena</p>
   </footer>
-  <script src="./js/script.js"></script>
+
+  <script src="./js/jquery-3.7.1.min.js"></script>
+  <script src="/js/login_functions.js"></script>
+  <script src="/js/checkStoredUsersAndPermissions.js"></script>
+  <script src="/js/js_general.js"></script>
 </body>
 </html>
