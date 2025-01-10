@@ -32,10 +32,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: $font_1_5;
 }
 
-h1, h2, h3, h4, h5, h6, p, label, span {
-  max-width: 700px;
-}
-
 /*Mixins*/
 
 /*Button*/
@@ -163,6 +159,9 @@ header {
 
 body {
   background-color: $colour_white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 main {
@@ -171,7 +170,7 @@ main {
   display: flex;
   flex-direction: column; /*Contenedores de main verticalmente posicionados*/
   padding: 10px;
-  background-image: url('../../assets/paper.jpg');
+  max-width: 900px;
   min-height: 100vH;
   align-items: center;
 }

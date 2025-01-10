@@ -24,7 +24,7 @@ module.exports = {
         "standard": "0 0 3px 0 #0e0e0e",
       },
       fontFamily: {
-        "standard": "Nunito Sans, Open Sans",
+        "standard": "Arial",
       },
       maxWidth: {
         "70vW": "70vw",

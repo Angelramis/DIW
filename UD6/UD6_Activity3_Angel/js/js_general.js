@@ -6,7 +6,7 @@ function displayPagesMenu(id) {
   document.getElementById(id).classList.toggle("show_menu");
 }
 
-// Función para actualizar el parágrafo errorHTML para mostrar un error
+// Función para actualizar el parágrafo errorHTML para mostrar un mensaje de error
 function showError(errorHTML, message) {
   errorHTML = $("#text_error");
   errorHTML.html(message);
