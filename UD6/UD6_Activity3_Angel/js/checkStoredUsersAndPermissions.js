@@ -37,20 +37,6 @@ $(document).ready(function () {
   // Si no existen usuarios guardados, crear uno por defecto
   if (!localStorage.getItem('users')) {
 
-    // Encriptación password
-    // let password = "Ramis.20"; 
-    // let salt = generateSalt();
-    // let saltedPassword = password + salt;
-    // let passwordHash = CryptoJS.SHA256(saltedPassword).toString();
-
-    // console.log(salt);
-    // console.log(passwordHash);
-
-    // const keys = {
-    //   hash: passwordHash,
-    //   salt: salt
-    // };
-
     // Creación usuario por defecto
     let defaultUser = {
       id: 1,

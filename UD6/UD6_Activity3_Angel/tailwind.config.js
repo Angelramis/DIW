@@ -31,9 +31,6 @@ module.exports = {
         "90vW": "90vw",
         "700": "700px",
       },
-      backgroundImage: {
-        "paper": 'url("../../assets/paper.jpg")',
-      },
       borderRadius: {
         "10": "10px",
       },

@@ -14,8 +14,13 @@
 /*Desktop*/
 @media screen and (min-width: 825px) {
   /*Main */
-.balena-3d-div > iframe { 
-  height: 40vW;
-}
+  main {
+    max-width: none;
+  }
+
+  .balena-3d-div > iframe { 
+    height: 40vW;
+    width: 70vW;
+  }
 
 }

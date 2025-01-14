@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aula Museu - Sa Balena</title>
   <link rel="stylesheet" href="../css/sass_common.css">
+  
   <link rel="stylesheet" href="output.css">
 </head>
 <body>
@@ -94,15 +95,22 @@
     </nav>
   </header>
 
-  <main class="text-center mt-14 flex flex-col p-3 bg-paper min-h-screen items-center gap-3">
+  <main class="text-center mt-14 flex flex-col p-3 min-h-screen items-center gap-3">
     <div class="titulo mb-2 text-30 font-bold">
       <h1>NOTÍCIES</h1>
     </div> 
     
-    <button type="button" class="call-to-action-button button-principal self-start">
+    <nav class="nav-news-search flex flex-row items-center gap-3">
+      <input type="search" placeholder="Cercar notícies..." name="news-search" id="inputSearch">
+      <button type="submit" name="search-news-submit" class="search-submit w-10">
+        <img src="../assets/icons/search.png" alt ="Icona cercador">
+      </button>
+    </nav>
+
+    <button type="button" class="call-to-action-button lg:flex">
       <img src="../assets/icons/mas.png" alt="Crear notícia" class="w-8">Crear notícia
     </button>
-
+   
      <section class="noticies">
       <article class="lg:max-w-96">
         <a href="noticia.html" class="noticia">
@@ -117,7 +125,6 @@
                 </button>
           </div>
 
-          
           <div class="div_img_noticia">
             <img src="../assets/noticies/noticia1/noticia1_01.png" alt="Imatge de la notícia" class="img_noticia pt-1 pb-1 shadow-standard">
             <p class="p_img_noticia flex">Autor de la imatge. 18/11/2024</p>
@@ -127,7 +134,6 @@
 
       <article class="lg:max-w-96">
         <a href="noticia.html" class="noticia">
-
           <div class="encapcalat_noticia">
               <div class="titol_subtitol_div">
                 <h2 class="titol_noticia">Nom de la notícia</h2>
@@ -138,7 +144,6 @@
                 </button>
           </div>
 
-          
           <div class="div_img_noticia">
             <img src="../assets/noticies/noticia1/noticia1_01.png" alt="Imatge de la notícia" class="img_noticia pt-1 pb-1 shadow-standard">
             <p class="p_img_noticia">Autor de la imatge. 18/11/2024</p>
@@ -249,6 +254,7 @@
   <script src="../js/jquery-3.7.1.min.js"></script>
   <script src="../js/login_functions.js"></script>
   <script src="../js/checkStoredUsersAndPermissions.js"></script>
+  <script src="../js/noticies.js"></script>
   <script src="../js/js_general.js"></script>
 </body>
 </html>
