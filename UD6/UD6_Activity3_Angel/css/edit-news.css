@@ -2,6 +2,51 @@
 
 main {
   display: block;
+  padding: 3px;
+  width: 90vW;
+}
+
+.edit-news-section {
+  width: 100%;
+  margin-bottom: 25px;
+  border-top: 1px solid #0e0e0e;
+}
+
+.edit-news-section-h2 {
+  margin: 10px 0px;
+  font-size: 22px;
+}
+
+.add-row-button {
+  height: 50px;
+  width: 150px;
+}
+
+.pair-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  align-items: center;
+}
+
+.builder {
+  width: 100%;
+}
+
+.end-edit-news-section {
+  margin-top: 80px;
+}
+
+.column-choice {
+  width: 150px;
+  height: 50px;
+  margin: 15px 0px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  border: 1px solid #0e0e0e;
 }
 
 .toolbox {
@@ -9,7 +54,9 @@ main {
   padding: 10px;
   background-color: #f4f4f4;
   border: 1px solid #ddd;
+  width: 100%;
 }
+
 .toolbox div {
   margin: 5px 0;
   padding: 10px;
@@ -17,15 +64,18 @@ main {
   border: 1px solid #aaa;
   cursor: move;
 }
+
 .row-container {
   margin-bottom: 20px;
 }
+
 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
+
 .column {
   width: 100%;
   min-height: 100px;
@@ -37,24 +87,29 @@ main {
   flex-direction: column;
   gap: 10px;
 }
+
 .column.half {
   width: 48%;
 }
+
 .element {
   padding: 10px;
   background-color: #d4edda;
   border: 1px solid #c3e6cb;
   cursor: move;
 }
+
 .element p {
   margin: 0;
   word-wrap: break-word;
   white-space: pre-wrap; /* Permite saltos de línea */
   width: 100%; /* Asegura que ocupe todo el ancho */
 }
+
 .element img {
   max-width: 100%;
 }
+
 .delete-row-btn {
   margin-left: 10px;
   padding: 5px 10px;
@@ -64,6 +119,26 @@ main {
   border-radius: 5px;
   cursor: pointer;
 }
+
 .delete-row-btn:hover {
   background-color: #c0392b;
+}
+
+
+/*Media queries*/
+/*Desktop*/
+@media screen and (min-width: 825px) {
+
+/* Main*/
+.main-news-data-form  {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+form .main-news-data-form > input {
+  width: 120px;
+}
+
 }

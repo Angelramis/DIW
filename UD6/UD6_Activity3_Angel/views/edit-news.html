@@ -82,10 +82,16 @@
             <p>Tancar sessió</p>
           </a>
   
-          <a href="" class="user-admin-bar">
+          <a href="../views/edit_users.html" class="user-admin-bar" id="edit-users-a">
             <img src="../assets/icons/admin.png" alt="user-admin" class="icon">
             <p>Administració d'usuaris</p>
           </a>
+
+          <a href="" class="user-admin-bar" id="edit-news-a">
+            <img src="../assets/icons/edit-news.png" alt="Editar noticies icona" class="icon">
+            <p>Administració de notícies</p>
+          </a>
+
         </nav>
       </nav>
     </div>
@@ -100,25 +106,53 @@
     <h1>CREAR NOTÍCIA</h1>
   </div>
 
-  <div class="toolbox">
-    <h2>Eines</h2>
-    <div class="tool" data-type="paragraph">Paràgraf</div>
-    <div class="tool" data-type="image">Imatge</div>
-  </div>
+  <section class="edit-news-section">
+    <h2 class="edit-news-section-h2">Dades principals</h2>
 
-  <div id="builder">
-    <div class="row-container"></div>
-  </div>
-  
-  <label for="column-choice">Nombre de columnes per fila:</label>
-  <select id="column-choice">
-    <option value="1">1 columna</option>
-    <option value="2">2 columnes</option>
-  </select>
-  <button id="add-row">Afegir Fila</button>
-  <button id="save-config">Guardar Configuració</button>
-  <button id="load-config">Carregar Configuració</button>
+    <form action="" method="POST" id="edit-news-form" class="main-news-data-form">
+      <label for="news-title">Títol: </label>
+      <input type="text" name="news-title" id="">
 
+      <label for="news-author">Autor: </label>
+      <input type="text" name="news-author" id="">
+
+      <label for="news-date">Data: </label>
+      <input type="date" name="news-date" id="">
+
+    </form>
+  </section>
+
+  <section class="edit-news-section">
+    <h2 class="edit-news-section-h2">Contingut</h2>
+
+    <div class="toolbox">
+      <h2>Elements</h2>
+      <div class="tool" data-type="paragraph">Paràgraf</div>
+      <div class="tool" data-type="image">Imatge</div>
+    </div>
+
+    <div id="builder" class="builder">
+      <div class="row-container"></div>
+    </div>
+
+    <label for="column-choice">Nombre de columnes per fila:</label>
+    <nav class="pair-buttons">
+      <select id="column-choice" class="column-choice">
+        <option value="1">1 columna</option>
+        <option value="2">2 columnes</option>
+      </select>
+      <button id="add-row" class="add-row-button">Afegir Fila</button>
+    </nav>
+  </section>
+
+
+  <section class="edit-news-section end-edit-news-section">
+    <h2 class="edit-news-section-h2">Finalitzar</h2>
+    <nav class="pair-buttons">
+      <button id="save-config" class="call-to-action-button">Guardar esborrany</button>
+      <button id="load-config" class="call-to-action-button">Publicar</button>
+    </nav>
+  </section>
 
 
 
