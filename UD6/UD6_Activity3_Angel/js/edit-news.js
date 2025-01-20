@@ -1,4 +1,14 @@
 $(function() {
+
+  let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+  
+  // Si el usuario no tiene permisos de editar noticias
+  if (!loggedUser || !loggedUser['edit_news']) {
+    // Si no ha iniciado sesión o no tiene permisos, salir de la página
+    window.location.href = "../index.html";
+  }
+
+
   // Hacer los elementos de la toolbox arrastrables
   $(".tool").draggable({
     helper: "clone",
