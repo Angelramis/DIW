@@ -1,5 +1,6 @@
 $(function() {
 
+  /* GESTIÓN OBTENER USUARIO */
   let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
   
   // Si el usuario no tiene permisos de editar noticias
@@ -8,6 +9,7 @@ $(function() {
     window.location.href = "../index.html";
   }
 
+  /* GESTIÓN AÑADIR CONTENIDO */
 
   // Hacer los elementos de la toolbox arrastrables
   $(".tool").draggable({
@@ -85,61 +87,86 @@ $(function() {
     });
   }
 
-  // Guardar configuración
+
+  /* GESTIÓN BOTONES FINALIZACIÓN */
+
+  // Al clicar GUARDAR CONFIGURACIÓN
   $("#save-config").on("click", function() {
-    const rows = [];
-    $(".row").each(function() {
-      const row = [];
+    // Obtener datos
+    let title = $('input[name="news-title"]').val();
+    let author = $('input[name="news-author"]').val();
+    let date = $('input[name="news-date"]').val();
+    let content = [];
+
+
+    // Guardar CONTENIDO de la noticia
+     $('.row-container .row').each(function() {
+      let rowContent = [];
       $(this).find(".column").each(function() {
-        const column = [];
+        let columnContent = [];
         $(this).children(".element").each(function() {
           if ($(this).find("p").length) {
-            column.push({
-              type: "paragraph",
-              content: $(this).find("p").text()
-            });
+            columnContent.push($(this).find("p").text());
           } else if ($(this).find("img").length) {
-            column.push({
-              type: "image",
-              src: $(this).find("img").attr("src")
-            });
+            columnContent.push($(this).find("img").attr("src"));
           }
         });
-        row.push(column);
+        rowContent.push(columnContent);
       });
-      rows.push(row);
+      content.push(rowContent);
     });
 
-    const config = JSON.stringify(rows);
-    localStorage.setItem("postBuilderConfig", config);
-    alert("Configuración guardada en el navegador.");
+    // Obtener LS de noticias y añadir la nueva noticia
+    let newsLS = JSON.parse(localStorage.getItem('news')) || [];
+
+    let newNews = {
+      id: newsLS.length + 1,
+      title: title,
+      author: author,
+      creation_date: date,
+      modification_date: new Date(),
+      content: content,
+      state: 0  // esborrany
+    };
+
+    newsLS.push(newNews);
+    localStorage.setItem('news', JSON.stringify(newsLS));
+    alert('Esborrany guardat');
   });
 
-  // Cargar configuración
-  $("#load-config").on("click", function() {
-    const config = localStorage.getItem("postBuilderConfig");
-    if (!config) {
-      alert("No hay configuración guardada.");
+
+
+
+
+
+
+
+
+
+
+
+  // Al clicar CARGAR CONFIGURACIÓN
+  $('#load-config').on('click', function() {
+    let newsLS = JSON.parse(localStorage.getItem('news')) || [];
+    if (newsLS.length === 0) {
+      alert("No hay noticias guardadas.");
       return;
     }
+    let latestNews = newsLS[newsLS.length - 1];
+    $('input[name="news-title"]').val(latestNews.title);
+    $('input[name="news-author"]').val(latestNews.author);
+    $('input[name="news-date"]').val(latestNews.created_at.split('T')[0]);
 
-    const rows = JSON.parse(config);
-    $(".row-container").empty(); // Limpiar todo antes de cargar
-    rows.forEach(row => {
+    $(".row-container").empty();
+    latestNews.content.forEach(row => {
       let newRow = '<div class="row">';
       row.forEach(column => {
         newRow += column.length > 1 ? `<div class="column half">` : `<div class="column">`;
-        column.forEach(element => {
-          if (element.type === "paragraph") {
-            newRow += `
-              <div class="element">
-                <p class="editable" onclick="editParagraph(this)">${element.content}</p>
-              </div>`;
-          } else if (element.type === "image") {
-            newRow += `
-              <div class="element">
-                <img src="${element.src}" alt="Imagen">
-              </div>`;
+        column.forEach(content => {
+          if (content.includes('data:image')) {
+            newRow += `<div class="element"><img src="${content}" alt="Imagen"></div>`;
+          } else {
+            newRow += `<div class="element"><p class="editable" onclick="editParagraph(this)">${content}</p></div>`;
           }
         });
         newRow += `</div>`;
@@ -154,6 +181,30 @@ $(function() {
 
   initializeDroppable();
 });
+
+
+// Al clicar PUBLICAR CONFIGURACIÓN
+$("#publish-config").on("click", function() {
+  let newsLS = JSON.parse(localStorage.getItem('news')) || [];
+  if (newsLS.length === 0) {
+    alert("No hay noticias para publicar.");
+    return;
+  }
+
+  let latestNews = newsLS[newsLS.length - 1];
+  latestNews.state = 1;  // Cambiar estado a publicado
+  latestNews.modification_date = new Date();
+
+  localStorage.setItem('news', JSON.stringify(newsLS));
+  alert("La noticia ha sido publicada correctamente.");
+
+  // Opcional: Redirigir a la página de noticias
+  window.location.href = "../src/noticies.html";
+});
+
+
+
+
 
 function loadImage(event) {
   const input = event.target;

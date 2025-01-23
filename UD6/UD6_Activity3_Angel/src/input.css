@@ -40,7 +40,7 @@
 
 
   .noticies {
-    @apply lg:grid grid-cols-2 gap-5 justify-items-center w-screen p-3;
+    @apply md:grid grid-cols-2 gap-5 justify-items-center w-screen p-3;
   }
 
   /* Noticia individual */

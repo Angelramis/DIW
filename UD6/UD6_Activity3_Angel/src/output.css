@@ -634,7 +634,7 @@ button, input {
   padding: 0.75rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .noticies {
     display: grid;
   }
@@ -694,6 +694,18 @@ button, input {
   width: 2rem;
 }
 
+.max-w-20 {
+  max-width: 5rem;
+}
+
+.max-w-96 {
+  max-width: 24rem;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -708,14 +720,6 @@ button, input {
 
 .gap-5 {
   gap: 1.25rem;
-}
-
-.self-start {
-  align-self: flex-start;
-}
-
-.bg-paper {
-  background-image: url("../../assets/paper.jpg");
 }
 
 .p-3 {
@@ -760,6 +764,10 @@ button, input {
 /*Clases reutilizables*/
 
 @media (min-width: 1024px) {
+  .lg\:flex {
+    display: flex;
+  }
+
   .lg\:max-w-96 {
     max-width: 24rem;
   }
