@@ -16,7 +16,11 @@
 /*Desktop*/
 @media screen and (min-width: 825px) {
   /*Main */
+  main {
+    max-width: none;
+  }
   .balena-3d-div > iframe {
     height: 40vW;
+    width: 70vW;
   }
 }/*# sourceMappingURL=sass_index.css.map */

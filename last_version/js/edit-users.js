@@ -1,11 +1,10 @@
 $(document).ready(function () {
 
   let loggedUser = localStorage.getItem('loggedUser');
-
-  if (!loggedUser) { //iniciado sesion, permisos
+  // Si no ha iniciado sesión o no tiene permisos, salir de la página
+  if (!loggedUser) { 
     window.location.href = "../index.html";
   }
-
 
   /* Forma 1 de declarar elementos */
   let titulo = $("<div>").addClass("titulo");
@@ -50,7 +49,7 @@ $(document).ready(function () {
   // let new_user = {
   //   id: 2,
   //   name: "user2",
-  //   email: "desenvolupador@iesjoanramis.org",
+  //   email: "desenvolupador2@iesjoanramis.org",
   //   password_hash: "961408558045f2698f3f273e593aade113310696f8b85dcb5f4887d26118e8de",
   //   salt: "85da85a60855172eb579e23b282169c4",
   //   edit_users: true,
@@ -132,7 +131,7 @@ $(document).ready(function () {
             <td class="user-management-td">
               <div class="user-management-div">
                 <a href="">Editar</a>
-                <a href="">Eliminar</a>
+                 ${user.name != "admin" ? `<a href="">Eliminar</a>` : ""} 
               </div>
             </td>
           </tr>`;

@@ -7,7 +7,8 @@ let login_bar = "";
 ocultándole elementos no necesarios/permitidos */
 function checkLogout() {
   /* Elementos DOM para ser ocultados o mostrados */
-  admin_a = $(".user-admin-bar");
+  admin_a = $("#edit-users-a");
+  edit_news_a = $("#edit-news-a");
   logout_a = $(".logout-bar");
   login_bar = $(".login-bar");
 
@@ -16,18 +17,24 @@ function checkLogout() {
   // Si no está logeado
   if (!loggedUser) {
     $(logout_a).addClass("hide");
+    $(edit_news_a).addClass("hide");
     $(admin_a).addClass("hide");
     $(login_bar).removeClass("hide");
   } else if (loggedUser) {
     $(logout_a).removeClass("hide");
     $(login_bar).addClass("hide");
     
-    // Si el usuario tiene permisos de editar
+    // Si el usuario tiene permisos de editar usuarios
     if (loggedUser.edit_users) {
       $(admin_a).removeClass("hide");
     }
-    
+
+    // Si el usuario tiene permisos de editar noticias
+    if (loggedUser.edit_news) {
+      $(admin_a).removeClass("hide");
+    }
   }
+
 }
 
 /* Verificar si hay usuarios en localStorage */
@@ -36,20 +43,6 @@ $(document).ready(function () {
   checkLogout(logout_a, admin_a);
   // Si no existen usuarios guardados, crear uno por defecto
   if (!localStorage.getItem('users')) {
-
-    // Encriptación password
-    // let password = "Ramis.20"; 
-    // let salt = generateSalt();
-    // let saltedPassword = password + salt;
-    // let passwordHash = CryptoJS.SHA256(saltedPassword).toString();
-
-    // console.log(salt);
-    // console.log(passwordHash);
-
-    // const keys = {
-    //   hash: passwordHash,
-    //   salt: salt
-    // };
 
     // Creación usuario por defecto
     let defaultUser = {

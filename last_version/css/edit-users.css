@@ -5,11 +5,6 @@ body {
   align-items: center;
 }
 
-/* Main */
-main {
-  max-width: 900px;
-  background-image: none;
-}
 
 /* Starting options */
 .edit-users-start {

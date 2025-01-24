@@ -17,12 +17,6 @@ function generateSalt() {
   return CryptoJS.lib.WordArray.random(16).toString();
 }
 
-// Función para actualizar el parágrafo de errorHTML.
-function showError(errorHTML, message) {
-  errorHTML = $("#text_error");
-  errorHTML.html(message);
-}
-
 
 // Función para comprobar sintaxis del password: 
 // mínimo una minuscula, mayuscula, carácter especial, longitud mínima y máxima.

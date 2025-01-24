@@ -12,6 +12,26 @@ function showError(errorHTML, message) {
   errorHTML.html(message);
 }
 
+// Función para enviar un mensaje centrado
+function showMessage(message, state) {
+  let messageDiv = $("#message-div");
+  let messageParent = $("#message-parent");
+  let textMessage = $("#text-message");
+  
+  if (messageDiv) {
+    if (state == "show") {
+    messageDiv.css("display", "flex");
+    messageParent.css("display", "flex");
+    } else if (state ="hide") {
+      messageDiv.css("display", "none");
+      messageParent.css("display", "none");
+    } else if (state = "options") {
+      // Mostrar boton cancelar.
+    }
+  }
+  textMessage.text(message);
+}
+
 
 /* ACCESSIBILITY */
 

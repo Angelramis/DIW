@@ -1,6 +1,37 @@
+
+/* GENERAL FUNCTIONS */
+
+// Función para mostrar y ocultar elementos en header
 function displayPagesMenu(id) {
   document.getElementById(id).classList.toggle("show_menu");
 }
+
+// Función para actualizar el parágrafo errorHTML para mostrar un mensaje de error
+function showError(errorHTML, message) {
+  errorHTML = $("#text_error");
+  errorHTML.html(message);
+}
+
+// Función para enviar un mensaje centrado
+function showMessage(message, state) {
+  let messageDiv = $("#message-div");
+  let messageParent = $("#message-parent");
+  let textMessage = $("#text-message");
+  
+  if (messageDiv) {
+    if (state == "show") {
+    messageDiv.css("display", "flex");
+    messageParent.css("display", "flex");
+    } else if (state ="hide") {
+      messageDiv.css("display", "none");
+      messageParent.css("display", "none");
+    } else if (state = "options") {
+      // Mostrar boton cancelar.
+    }
+  }
+  textMessage.text(message);
+}
+
 
 /* ACCESSIBILITY */
 
