@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks</title>
+</head>
+<body>
+
+  <main>
+    <h1>Tasks</h1>
+    <form id="task-form">
+      <label for="task-title">Title</label>
+      <input type="text" id="task-title" placeholder="Task title">
+      
+      <label for="task-description">Description</label>
+      <textarea rows="4" id="task-description" placeholder="Task description"></textarea>
+     
+      <label for="task-priority">Priority</label>
+      <select id="task-priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <button id="btn-task-save">Save task</button>
+
+    </form>
+
+    <div id="tasks-container">
+      
+    </div>
+
+
+  </main>
+
+  <script type="module" src="index.js"></script>
+  
+</body>
+</html>

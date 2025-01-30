@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Clases reutilizables*/
+@layer components {
+
+  section {
+    @apply flex flex-col gap-2 flex-wrap text-center items-center;
+  }
+
+  button {
+    @apply  mb-1 mt-1 text-colour_black  
+            text-15 cursor-pointer shadow-standard  self-center
+            font-standard font-bold ease-in;
+  }
+
+  button, input {
+    @apply border-1 border-solid border-colour_black rounded-10 max-w-80 p-1;
+  }
+
+  /*Noticies*/
+
+  .call-to-action-button {
+    @apply flex flex-row flex-nowrap justify-evenly items-center bg-colour_yellow w-40 h-12;
+  }
+
+  .titol_noticia {
+    @apply flex flex-row items-center justify-start font-bold text-20;
+  }
+
+  .subtitol_noticia {
+    @apply flex flex-row items-center justify-start;
+  }
+
+
+  .encapcalat_noticia {
+    @apply flex flex-row justify-between items-center;
+  }
+
+
+  .noticies {
+    @apply md:grid grid-cols-2 gap-5 justify-items-center w-screen p-3 items-start;
+  }
+
+  /* Noticia individual */
+
+  .encapcalat_individual {
+    @apply flex-col items-start justify-normal;
+  }
+
+
+  .contingut_noticia_costat {
+     @apply flex flex-col gap-5 lg:grid grid-cols-2 items-start;
+  }
+  
+}

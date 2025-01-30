@@ -1,0 +1,26 @@
+@use './general/variables.scss' as *;
+
+/*Main */
+.balena-3d-div > iframe { /*Longitudes ballena 3D*/
+  height: 60vW;
+  width: 90vW;
+  margin: 5px;
+  box-shadow: 0px 0px 3px 0px $colour_black;
+}
+
+
+
+/*Media queries*/
+/*Desktop*/
+@media screen and (min-width: 825px) {
+  /*Main */
+  main {
+    max-width: none;
+  }
+
+  .balena-3d-div > iframe { 
+    height: 40vW;
+    width: 70vW;
+  }
+
+}
