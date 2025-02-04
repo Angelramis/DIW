@@ -63,7 +63,7 @@ $(document).ready(function () {
     console.log(defaultUser);
   }
 
-  
+
   // Al pulsar logout en header, si hay un usuario loggeado, deslogear
   $(logout_a).on("click", function (event) {
     let loggedUser = localStorage.getItem('loggedUser');

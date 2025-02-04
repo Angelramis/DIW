@@ -1,6 +1,10 @@
+import { guardarNoticia } from "../js/gestionDB";
 
 $(function() {
-  // Gestión obtener y cargar noticia si se ha entrado por botón editar noticia
+  
+
+  // Gestión obtener y cargar noticia si se 
+  // ha entrado por botón editar noticia
 
   // Obtener noticias de LS
   let newsLS = JSON.parse(localStorage.getItem('news')) || [];
@@ -177,8 +181,11 @@ $(function() {
       state: 0  // esborrany
     };
 
-    newsLS.push(newNews);
-    localStorage.setItem('news', JSON.stringify(newsLS));
+    // Guardar en Firestore
+    guardarNoticia(newNews);
+
+    // newsLS.push(newNews);
+    // localStorage.setItem('news', JSON.stringify(newsLS));
     showMessage("Esborrany guardat.", "show")
   });
 
