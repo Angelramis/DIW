@@ -1,8 +1,40 @@
-import { guardarNoticia } from "../js/gestionDB";
+import { guardarNoticia } from "../js/gestionDB.js";
+
+
+// Funciones
+function loadImage() {
+  const $event = $(this);
+  const input = $event.target;
+  const reader = new FileReader();
+  reader.onload = function() {
+    const img = $(input).siblings("img");
+    img.attr("src", reader.result);
+    img.show();
+    $(input).hide();
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function editParagraph() {
+  const $p = $(this);
+  const currentText = $p.text();
+  const input = $(`<input type="text" value="${currentText}" />`);
+
+  input.on("blur", function() {
+    const newText = $(this).val();
+    $p.text(newText);
+    $p.show();
+    $(this).remove();
+  });
+
+  $p.hide();
+  $p.after(input);
+  input.focus();
+}
+
 
 $(function() {
   
-
   // Gestión obtener y cargar noticia si se 
   // ha entrado por botón editar noticia
 
@@ -31,7 +63,8 @@ $(function() {
           if (content.includes('data:image')) {
             newRow += `<div class="element"><img src="${content}" alt="Imagen"></div>`;
           } else {
-            newRow += `<div class="element"><p class="editable" onclick="editParagraph(this)">${content}</p></div>`;
+            newRow += `<div class="element"><p class="editable">${content}</p></div>`;
+             
           }
         });
         newRow += `</div>`;
@@ -68,11 +101,11 @@ $(function() {
       drop: function(event, ui) {
         const type = ui.draggable.data("type");
         if ($(this).children().length >= 2 && $(this).hasClass("half")) {
-          showMessage("Només es permeten dos elements per columna.", "show")
+          showMessage("Només es permeten dos elements per columna.", "show");
           return;
         }
         if ($(this).children().length >= 1 && !$(this).hasClass("half")) {
-          showMessage("Només es permet un element a aquesta columna.", "show")
+          showMessage("Només es permet un element a aquesta columna.", "show");
           return;
         }
 
@@ -80,16 +113,19 @@ $(function() {
         if (type === "paragraph") {
           newElement = $(
             `<div class="element">
-              <p class="editable" onclick="editParagraph(this)">Escribe aquí tu texto...</p>
+              <p class="editable">Escribe aquí tu texto...</p>
             </div>`
           );
+          newElement.on('click', editParagraph);
+
         } else if (type === "image") {
           newElement = $(
             `<div class="element">
-              <input type="file" accept="image/*" onchange="loadImage(event)" />
+              <input type="file" accept="image/*"/>
               <img src="" alt="Imagen" style="display: none;">
             </div>`
           );
+          newElement.on('change', loadImage);
         }
 
         $(this).append(newElement);
@@ -177,16 +213,14 @@ $(function() {
       author: author,
       creation_date: date,
       modification_date: new Date(),
-      content: content,
+      content: JSON.stringify(content),
       state: 0  // esborrany
     };
 
     // Guardar en Firestore
-    guardarNoticia(newNews);
+    guardarNoticia(newNews.id, newNews);
 
-    // newsLS.push(newNews);
-    // localStorage.setItem('news', JSON.stringify(newsLS));
-    showMessage("Esborrany guardat.", "show")
+    showMessage("Esborrany guardat.", "show");
   });
 
 
@@ -198,7 +232,7 @@ $(function() {
     let newsLS = JSON.parse(localStorage.getItem('news')) || [];
 
     if (newsLS.length == 0) {
-      showMessage("No hi ha notícies guardades.", "show")
+      showMessage("No hi ha notícies guardades.", "show");
       return;
     }
 
@@ -220,7 +254,8 @@ $(function() {
           if (content.includes('data:image')) {
             newRow += `<div class="element"><img src="${content}" alt="Imagen"></div>`;
           } else {
-            newRow += `<div class="element"><p class="editable" onclick="editParagraph(this)">${content}</p></div>`;
+            newRow += `<div class="element"><p class="editable">${content}</p></div>`;
+            newRow.on('click', editParagraph);
           }
         });
         newRow += `</div>`;
@@ -243,14 +278,14 @@ $("#publish-config").on("click", function() {
   let newsLS = JSON.parse(localStorage.getItem('news')) || [];
 
   if (newsLS.length == 0) {
-    showMessage("S'ha de guardar la noticia abans de publicar-la.", "show")
+    showMessage("S'ha de guardar la noticia abans de publicar-la.", "show");
     return;
   }
 
   let latestNews = newsLS[newsLS.length - 1];
 
   if (latestNews.state == 1) {
-    showMessage("La notícia més recent ja està publicada.", "show")
+    showMessage("La notícia més recent ja està publicada.", "show");
     return;
   }
 
@@ -303,33 +338,3 @@ $("#delete-config").on("click", function() {
   // Redirigir a la página noticias
   window.location.href = "../src/noticies.html";
 });
-
-
-function loadImage(event) {
-  const input = event.target;
-  const reader = new FileReader();
-  reader.onload = function() {
-    const img = $(input).siblings("img");
-    img.attr("src", reader.result);
-    img.show();
-    $(input).hide();
-  };
-  reader.readAsDataURL(input.files[0]);
-}
-
-function editParagraph(paragraph) {
-  const $p = $(paragraph);
-  const currentText = $p.text();
-  const input = $(`<input type="text" value="${currentText}" />`);
-
-  input.on("blur", function() {
-    const newText = $(this).val();
-    $p.text(newText);
-    $p.show();
-    $(this).remove();
-  });
-
-  $p.hide();
-  $p.after(input);
-  input.focus();
-}

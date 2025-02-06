@@ -1,10 +1,10 @@
 // GESTIÓN DB FIREBASE GENERAL //
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js"
+import { doc, getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js"
 
 
-// Gestión iniciar Firebase y FireStore //
+// Gestión iniciar Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyD5VfqH2sDcSMFeSRSuTJKKp2AekkclMww",
   authDomain: "whale-project-angel.firebaseapp.com",
@@ -18,17 +18,22 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore();
 
-// FUNCIONES //
+// FUNCIONES
 
 // Función para obtener las noticias en base de datos
 export function obtenerNoticias() {
-  getDocs(collection)
+  getDocs(collection);
 }
 
 
 // Función para guardar noticia en la base de datos
-export function guardarNoticia(newNews) {
-  // id, title, subtitle, author, creation_date, modification_date, content, state
-  addDoc(collection(db, "news"), newNews);
+// export function guardarNoticia(newNews) {
+//   addDoc(collection(db, "news"), newNews);
+// }
+
+export async function guardarNoticia(newsID, newNews) {
+  let newsRef = doc(db, "news", newsID); // Asignar ID
+
+  await setDoc(newsRef, newNews);
 }
 
