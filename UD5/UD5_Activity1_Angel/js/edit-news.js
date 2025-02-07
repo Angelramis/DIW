@@ -1,10 +1,9 @@
-import { guardarNoticia } from "../js/gestionDB.js";
+import { guardarNoticia, obtenerNoticias } from "../js/gestionDB.js";
 
 
 // Funciones
-function loadImage() {
-  const $event = $(this);
-  const input = $event.target;
+function loadImage(event) {
+  const input = event.target;
   const reader = new FileReader();
   reader.onload = function() {
     const img = $(input).siblings("img");
@@ -78,7 +77,7 @@ $(function() {
 
 
 $(function() {
-  // Gestión Creación/Obtención/Modificación/Eliminación noticias
+  // Gestión de noticias
 
   let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
   
@@ -203,11 +202,13 @@ $(function() {
       return;
     }
 
-    // Obtener LS de noticias y añadir nueva noticia
-    let newsLS = JSON.parse(localStorage.getItem('news')) || [];
+    // Obtener noticias y añadir nueva noticia
+    let savedNews = obtenerNoticias();
+
+    console.log(savedNews);
 
     let newNews = {
-      id: newsLS.length + 1,
+      id: savedNews.length + 1,
       title: title,
       subtitle: subtitle,
       author: author,
@@ -218,7 +219,7 @@ $(function() {
     };
 
     // Guardar en Firestore
-    guardarNoticia(newNews.id, newNews);
+    guardarNoticia(newNews);
 
     showMessage("Esborrany guardat.", "show");
   });
@@ -228,16 +229,16 @@ $(function() {
   // Al clicar CARGAR CONFIGURACIÓN
   $('#load-config').on('click', function() {
 
-    // Obtener noticias de LS
-    let newsLS = JSON.parse(localStorage.getItem('news')) || [];
+    // Obtener noticias
+    let savedNews = obtenerNoticias();
 
-    if (newsLS.length == 0) {
+    if (savedNews.length == 0) {
       showMessage("No hi ha notícies guardades.", "show");
       return;
     }
 
-    // Obtener última la notícia gestionada
-    let latestNews = newsLS[newsLS.length - 1];
+    // Obtener última la notícia guardada
+    let latestNews = savedNews[savedNews.length - 1];
     $('input[name="news-title"]').val(latestNews.title);
     $('input[name="news-subtitle"]').val(latestNews.subtitle);
     $('input[name="news-author"]').val(latestNews.author);

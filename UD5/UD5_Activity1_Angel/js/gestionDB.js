@@ -1,7 +1,7 @@
 // GESTIÓN DB FIREBASE GENERAL //
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { doc, getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js"
+import { doc, getFirestore, collection, addDoc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js"
 
 
 // Gestión iniciar Firebase
@@ -18,22 +18,27 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore();
 
+// Variables
+let newsCollection = collection(db, "news");
+
 // FUNCIONES
 
 // Función para obtener las noticias en base de datos
-export function obtenerNoticias() {
-  getDocs(collection);
+export async function obtenerNoticias() {
+  const querySnapshot = await getDocs(newsCollection); // Obtener colección noticias
+   
+  let savedNews = querySnapshot.docs.map((doc) => doc.data());
+
+  return savedNews;
 }
 
+// export async function guardarNoticia(newsID, newNews) {
+//   let newsRef = doc(newsCollection, String(newsID)); // Asignar ID, como String
 
-// Función para guardar noticia en la base de datos
-// export function guardarNoticia(newNews) {
-//   addDoc(collection(db, "news"), newNews);
+//   await setDoc(newsRef, newNews); // Añadir a Firestore
 // }
 
-export async function guardarNoticia(newsID, newNews) {
-  let newsRef = doc(db, "news", newsID); // Asignar ID
-
-  await setDoc(newsRef, newNews);
+// Función para guardar noticia en la base de datos con addDoc
+export function guardarNoticia(newNews) {
+  addDoc(newsCollection, newNews);
 }
-
