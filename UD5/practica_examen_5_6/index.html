@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tareas</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <h1>Gestión de tareas</h1>
+
+    <main>
+      <h1>Crear tarea</h1>
+      <form id="crear-tarea-form">
+        <label>Nombre</label>
+        <input type="text" name="nombre-tarea" id="nombre-tarea">
+
+        <label>Descripción</label>
+        <input type="text" name="descripcion-tarea" id="descripcion-tarea">
+
+        <label>Prioridad</label>
+        <select name="prioridad-tarea" id="prioridad-tarea">
+          <option value="1">Baja</option>
+          <option value="2">Media</option>
+          <option value="3">Alta</option>
+        </select>
+
+        <button type="submit" id="crear-tarea">Crear</button>
+      </form>
+
+      <h2>Tareas</h2>
+      <div class="div-tareas" id="div-tareas">
+
+      </div>
+    </main>
+
+    <script src="jquery-3.7.1.min.js"></script>
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="index.js"></script>
+</body>
+</html>
