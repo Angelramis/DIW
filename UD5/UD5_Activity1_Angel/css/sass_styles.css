@@ -169,17 +169,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /*Mixins*/
 /*Button*/
-/*Highlighting font effect*/
-p::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, label::-moz-selection, a::-moz-selection, span::-moz-selection {
-  background-color: #b96a00;
-  color: #f0f0f0;
-}
-p::selection, h1::selection, h2::selection, h3::selection,
-h4::selection, h5::selection, label::selection, a::selection, span::selection {
-  background-color: #b96a00;
-  color: #f0f0f0;
-}
-
 /*Header*/
 header {
   position: fixed;

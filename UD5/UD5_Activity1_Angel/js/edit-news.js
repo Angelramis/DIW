@@ -204,8 +204,8 @@ $(function() {
 
     // Obtener noticias y añadir nueva noticia
     let savedNews = obtenerNoticias();
-
-    console.log(savedNews);
+    
+    console.log(savedNews); // aun no han cargado los datos
 
     let newNews = {
       id: savedNews.length + 1,

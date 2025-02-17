@@ -52,15 +52,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/*Highlighting font effect*/
-p::selection, h1::selection, h2::selection, h3::selection,
-h4::selection, h5::selection, label::selection, a::selection, span::selection
-{
-  background-color: $colour_orange_dark;
-  color: $colour_white;
-}
-
-
 /*Header*/
 
 header {

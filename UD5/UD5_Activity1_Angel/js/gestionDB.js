@@ -1,5 +1,3 @@
-// GESTIÓN DB FIREBASE GENERAL //
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
 import { doc, getFirestore, collection, addDoc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js"
 
@@ -39,6 +37,6 @@ export async function obtenerNoticias() {
 // }
 
 // Función para guardar noticia en la base de datos con addDoc
-export function guardarNoticia(newNews) {
-  addDoc(newsCollection, newNews);
+export async function guardarNoticia(newNews) {
+  await addDoc(newsCollection, newNews);
 }

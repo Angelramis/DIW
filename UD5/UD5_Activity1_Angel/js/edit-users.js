@@ -22,9 +22,11 @@ $(document).ready(function () {
                         <img src="../assets/icons/search.png" alt ="Icona cercador">
                       </button>
                     </nav>
+                    <a href="/views/edit-user.html" style="align-self: center;">
                       <button type='button' class='call-to-action-button'>
-                              <img src='../assets/icons/mas.png' alt='mas'>Crear usuari
-                            </button>
+                        <img src='../assets/icons/mas.png' alt='mas'>Crear usuari
+                      </button>
+                    </a>
                     </nav>`;
 
   let usersOpenSection = `<section class="users-section" id="users-section">`;
@@ -44,20 +46,6 @@ $(document).ready(function () {
 
   // Obtener array users LS
   let users = JSON.parse(localStorage.getItem("users")) || [];
-
-  // Para prueba varios usuarios
-  // let new_user = {
-  //   id: 2,
-  //   name: "user2",
-  //   email: "desenvolupador2@iesjoanramis.org",
-  //   password_hash: "961408558045f2698f3f273e593aade113310696f8b85dcb5f4887d26118e8de",
-  //   salt: "85da85a60855172eb579e23b282169c4",
-  //   edit_users: true,
-  //   edit_news: true,
-  //   edit_bone_files: true,
-  //   active: true,
-  //   is_first_login: true
-  // };
 
   // users.push(new_user);
   // localStorage.setItem('users', JSON.stringify(users));
@@ -120,7 +108,7 @@ $(document).ready(function () {
         </tbody>
       </table>`;
 
-      /* --- Filas para tabla Desktop --- */
+      /* --- Tabla Desktop --- */
       let userTableDesktopBody = `
           <tr>
             <td>${user.id}</td>
@@ -138,7 +126,7 @@ $(document).ready(function () {
 
       $(".user-table-desktop").append(userTableDesktopBody);
       
-      $("#users-section").append(userTable); // Tabla de movil
+      $("#users-section").append(userTable);
     
   });
   $(".user-table-desktop").append(userTableDesktopClose);
