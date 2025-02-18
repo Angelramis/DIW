@@ -1,4 +1,4 @@
-import { guardarNoticia, obtenerNoticias } from "../js/gestionDB.js";
+import { obtenerElementos, addElemento, actualizarElemento, eliminarElemento, obtenerElemento } from "../js/gestionDB.js";
 
 
 // Funciones
@@ -170,7 +170,7 @@ $(function() {
   /* GESTIÓN BOTONES FINALIZACIÓN */
 
   // Al clicar GUARDAR CONFIGURACIÓN
-  $("#save-config").on("click", function() {
+  $("#save-config").on("click", async function() {
     // Obtener datos
     let title = $('input[name="news-title"]').val();
     let subtitle = $('input[name="news-subtitle"]').val();
@@ -203,9 +203,9 @@ $(function() {
     }
 
     // Obtener noticias y añadir nueva noticia
-    let savedNews = obtenerNoticias();
+    let savedNews = await obtenerElementos("news");
     
-    console.log(savedNews); // aun no han cargado los datos
+    console.log(savedNews);
 
     let newNews = {
       id: savedNews.length + 1,
@@ -219,7 +219,7 @@ $(function() {
     };
 
     // Guardar en Firestore
-    guardarNoticia(newNews);
+    addElemento("news", newNews.id, newNews);
 
     showMessage("Esborrany guardat.", "show");
   });
@@ -227,10 +227,10 @@ $(function() {
 
 
   // Al clicar CARGAR CONFIGURACIÓN
-  $('#load-config').on('click', function() {
+  $('#load-config').on('click', async function() {
 
     // Obtener noticias
-    let savedNews = obtenerNoticias();
+    let savedNews = await obtenerElementos("news");
 
     if (savedNews.length == 0) {
       showMessage("No hi ha notícies guardades.", "show");
@@ -238,7 +238,7 @@ $(function() {
     }
 
     // Obtener última la notícia guardada
-    let latestNews = savedNews[savedNews.length - 1];
+    let latestNews = obtenerElemento("news", savedNews.length - 1);
     $('input[name="news-title"]').val(latestNews.title);
     $('input[name="news-subtitle"]').val(latestNews.subtitle);
     $('input[name="news-author"]').val(latestNews.author);
@@ -274,16 +274,18 @@ $(function() {
 
 
 // Al clicar PUBLICAR CONFIGURACIÓN
-$("#publish-config").on("click", function() {
-  // Obtener noticias LS
-  let newsLS = JSON.parse(localStorage.getItem('news')) || [];
+$("#publish-config").on("click", async function() {
+  
+  // Obtener noticias
+  let savedNews = await obtenerElementos("news");
 
   if (newsLS.length == 0) {
     showMessage("S'ha de guardar la noticia abans de publicar-la.", "show");
     return;
   }
 
-  let latestNews = newsLS[newsLS.length - 1];
+  // Obtener última la notícia guardada
+  let latestNews = obtenerElemento("news", savedNews.length - 1);
 
   if (latestNews.state == 1) {
     showMessage("La notícia més recent ja està publicada.", "show");
@@ -299,15 +301,16 @@ $("#publish-config").on("click", function() {
 
 
 // Al clicar ELIMINAR NOTICIA
-$("#delete-config").on("click", function() {
+$("#delete-config").on("click", async function() {
 
-  let newsLS = JSON.parse(localStorage.getItem('news')) || [];
+  // Obtener noticias
+  let savedNews = await obtenerElementos("news");
 
   // Obtener el ID de la noticia si se entra por editar
   let urlParams = new URLSearchParams(window.location.search);
   let newsId = urlParams.get('id');  
 
-  if (newsLS.length == 0) {
+  if (savedNews.length == 0) {
     showMessage("No hi ha notícies guardades.", "show");
     return;
   }
@@ -326,14 +329,12 @@ $("#delete-config").on("click", function() {
   
   // Si hay un ID en la URL, eliminar la noticia con ese ID
   if (newsId) {
-    newsLS = newsLS.filter(news => news.id !== parseInt(newsId));
+    eliminarElemento("news", newsId);
   } else {
     // Si no hay ID, eliminar la última noticia del array de LS
-    newsLS.pop(); 
+    eliminarElemento("news", savedNews.length - 1);
   }
 
-  // Guardar la lista actualizada de LS
-  localStorage.setItem('news', JSON.stringify(newsLS));
   showMessage("La notícia s'ha eliminat correctament.", "show");
 
   // Redirigir a la página noticias

@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { doc, getFirestore, collection, addDoc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js"
+import { doc, getFirestore, collection, setDoc, getDocs, getDoc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 
 // Gestión iniciar Firebase
@@ -16,27 +16,56 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore();
 
-// Variables
-let newsCollection = collection(db, "news");
 
 // FUNCIONES
 
-// Función para obtener las noticias en base de datos
-export async function obtenerNoticias() {
-  const querySnapshot = await getDocs(newsCollection); // Obtener colección noticias
+// Función para obtener elementos en base de datos
+export async function obtenerElementos(nombreColeccion) {
+  let coleccion = collection(db, nombreColeccion); // Obtener colección pasada
+
+  let elementosSnapshot = await getDocs(coleccion); // Obtener elementos
    
-  let savedNews = querySnapshot.docs.map((doc) => doc.data());
+  let elementos = elementosSnapshot.docs.map(doc => ({
+                  ...doc.data(), 
+                  id: doc.id     
+                }));
 
-  return savedNews;
+  return elementos;
 }
 
-// export async function guardarNoticia(newsID, newNews) {
-//   let newsRef = doc(newsCollection, String(newsID)); // Asignar ID, como String
 
-//   await setDoc(newsRef, newNews); // Añadir a Firestore
-// }
+// Obtener elemento individual por su ID
+export function obtenerElemento(nombreColeccion, idElemento) {
+  let coleccion = collection(db, nombreColeccion);
 
-// Función para guardar noticia en la base de datos con addDoc
-export async function guardarNoticia(newNews) {
-  await addDoc(newsCollection, newNews);
+  let elemento = getDoc(doc(coleccion, idElemento));
+
+  return elemento;
 }
+
+// Añadir un elemento a Firestore
+export function addElemento(nombreColeccion, idElemento, elemento) {
+  let coleccion = collection(db, nombreColeccion); // Obtener colección pasada
+
+  try {
+  setDoc(doc(coleccion, idElemento.toString()), elemento); 
+  } catch(error) {
+    console.log("Error guardando elemento: ", error);
+  }
+}
+
+// Eliminar un elemento
+export function eliminarElemento(nombreColeccion, idElemento) {
+  let coleccion = collection(db, nombreColeccion);
+
+  // Eliminar el que tiene el id especificado
+  deleteDoc(doc(coleccion, idElemento));
+}
+
+// Actualizar datos de un elemento
+export function actualizarElemento(nombreColeccion, idElemento, nuevosDatos) {
+  let coleccion = collection(db, nombreColeccion);
+
+  updateDoc(doc(coleccion, idElemento), nuevosDatos);
+}
+
