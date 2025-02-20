@@ -35,12 +35,21 @@ export async function obtenerElementos(nombreColeccion) {
 
 
 // Obtener elemento individual por su ID
-export function obtenerElemento(nombreColeccion, idElemento) {
-  let coleccion = collection(db, nombreColeccion);
+export async function obtenerElemento(nombreColeccion, idElemento) {
+  try {
+    let coleccion = collection(db, nombreColeccion);
 
-  let elemento = getDoc(doc(coleccion, idElemento));
+    let docRef = doc(coleccion, idElemento.toString());
+    let docSnap = await getDoc(docRef);
 
-  return elemento;
+    if (docSnap.exists()) {
+      return { id: docSnap.id, ...docSnap.data() };
+    } else {
+      console.log("Elemento no existe");
+    }
+  } catch (error) {
+    console.log("Error obteniendo documento: ", error);
+  }
 }
 
 // Añadir un elemento a Firestore
@@ -48,24 +57,32 @@ export function addElemento(nombreColeccion, idElemento, elemento) {
   let coleccion = collection(db, nombreColeccion); // Obtener colección pasada
 
   try {
-  setDoc(doc(coleccion, idElemento.toString()), elemento); 
+    setDoc(doc(coleccion, idElemento), elemento); 
   } catch(error) {
     console.log("Error guardando elemento: ", error);
   }
 }
 
 // Eliminar un elemento
-export function eliminarElemento(nombreColeccion, idElemento) {
+export async function eliminarElemento(nombreColeccion, idElemento) {
   let coleccion = collection(db, nombreColeccion);
 
   // Eliminar el que tiene el id especificado
-  deleteDoc(doc(coleccion, idElemento));
+  try {
+    await deleteDoc(doc(coleccion, idElemento));
+  } catch(error) {
+    console.log("Error eliminando elemento: ", error);
+  }
 }
 
 // Actualizar datos de un elemento
-export function actualizarElemento(nombreColeccion, idElemento, nuevosDatos) {
+export async function actualizarElemento(nombreColeccion, idElemento, elemento) {
   let coleccion = collection(db, nombreColeccion);
 
-  updateDoc(doc(coleccion, idElemento), nuevosDatos);
+  try {
+    await updateDoc(doc(coleccion, idElemento), elemento);
+  } catch (error) {
+    console.log("Error actualizando elemento: ", error);
+  }
 }
 

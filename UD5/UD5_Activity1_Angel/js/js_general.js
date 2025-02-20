@@ -25,8 +25,6 @@ function showMessage(message, state) {
     } else if (state ="hide") {
       messageDiv.css("display", "none");
       messageParent.css("display", "none");
-    } else if (state = "options") {
-      // Mostrar boton cancelar.
     }
   }
   textMessage.text(message);

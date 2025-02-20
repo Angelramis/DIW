@@ -100,6 +100,13 @@
     </nav>
   </header>
 
+  <div class="message-parent" id="message-parent">
+    <div class="message-div" id="message-div">
+      <p id="text-message"></p>
+      <button class="call-to-action-button" onclick='showMessage("", "hide")'>Acceptar</button>
+    </div>
+  </div>
+
 <main>
   <div class="titulo">
     <h1>Gestió Usuari</h1>
@@ -107,12 +114,12 @@
 
   <section class="edit-news-section">
 
-    <form action="" method="POST" id="edit-user-form" class="user-form">
+    <form method="POST" id="edit-user-form" class="user-form">
       <label for="news-title">Nom </label>
-      <input type="text" name="news-title" id="">
+      <input type="text" name="user-name">
       
       <label for="news-subtitle">Correu </label>
-      <input type="text" name="news-subtitle" id="">
+      <input type="text" name="user-email">
 
       <hr style="margin: 10px 0;">
 
@@ -120,16 +127,16 @@
 
       <nav class="nav-checkboxes">
         <p>Editar notícies </p>
-        <input type="checkbox" value="edit_news">
+        <input type="checkbox" value="edit_news" name="edit_news">
 
         <p>Editar usuaris </p>
-        <input type="checkbox" value="edit_users">
+        <input type="checkbox" value="edit_users" name="edit_users">
 
         <p>Editar fitxes d'ossos </p>
-        <input type="checkbox" value="edit_bone_files">
+        <input type="checkbox" value="edit_bone_files" name="edit_bone_files">
 
         <p>Actiu </p>
-        <input type="checkbox" value="active" checked>
+        <input type="checkbox" value="active" name="active" checked>
       </nav>
 
       <input type="submit" value="Guardar" class="call-to-action-button">
@@ -211,6 +218,8 @@
   
   <script src="../js/jquery-3.7.1.min.js"></script>
   <script src="../js/js_general.js"></script>
+  <script type="module" src="../js/gestionDB.js"></script>
+  <script type="module" src="../js/edit-user.js"></script>
   <script src="../js/checkStoredUsersAndPermissions.js"></script>
 </body>
 </html>

@@ -32,19 +32,19 @@ function editParagraph() {
 }
 
 
-$(function() {
+$(async function() {
   
   // Gestión obtener y cargar noticia si se 
   // ha entrado por botón editar noticia
 
-  // Obtener noticias de LS
-  let newsLS = JSON.parse(localStorage.getItem('news')) || [];
-
+  // Obtener noticias
+  let savedNews = await obtenerElementos("news");
+  
   // Conseguir el ID de noticia por URL
   let urlParams = new URLSearchParams(window.location.search);
   let newsId = urlParams.get('id');
 
-  let newsToEdit = newsLS.find(news => news.id == newsId);
+  let newsToEdit = savedNews.find(news => news.id == newsId);
 
   if (newsToEdit) {
     // Cargar su contenido
@@ -52,6 +52,9 @@ $(function() {
     $('input[name="news-subtitle"]').val(newsToEdit.subtitle);
     $('input[name="news-author"]').val(newsToEdit.author);
     $('input[name="news-date"]').val(newsToEdit.creation_date);
+
+    // Parsear contenido
+    newsToEdit.content = JSON.parse(newsToEdit.content);
 
     $(".row-container").empty();
     newsToEdit.content.forEach(row => {
@@ -178,7 +181,6 @@ $(function() {
     let date = $('input[name="news-date"]').val();
     let content = [];
 
-
     // Guardar CONTENIDO de la noticia
      $('.row-container .row').each(function() {
       let rowContent = [];
@@ -198,17 +200,15 @@ $(function() {
 
     // Verificación rellando campos
     if (!title || !subtitle || !author || !date || !content.length) {
-      showMessage("No hi poden haver camps buits.", "show");
+      showMessage("No hi poden haver camps buits. Es requireix al menys una imatge.", "show");
       return;
     }
 
     // Obtener noticias y añadir nueva noticia
     let savedNews = await obtenerElementos("news");
-    
-    console.log(savedNews);
 
     let newNews = {
-      id: savedNews.length + 1,
+      id: (savedNews.length + 1).toString(),
       title: title,
       subtitle: subtitle,
       author: author,
@@ -217,6 +217,8 @@ $(function() {
       content: JSON.stringify(content),
       state: 0  // esborrany
     };
+
+    console.log(newNews);
 
     // Guardar en Firestore
     addElemento("news", newNews.id, newNews);
@@ -238,13 +240,20 @@ $(function() {
     }
 
     // Obtener última la notícia guardada
-    let latestNews = obtenerElemento("news", savedNews.length - 1);
+    let latestNews = await obtenerElemento("news", savedNews.length);
+
     $('input[name="news-title"]').val(latestNews.title);
     $('input[name="news-subtitle"]').val(latestNews.subtitle);
     $('input[name="news-author"]').val(latestNews.author);
     $('input[name="news-date"]').val(latestNews.modification_date);
 
     $(".row-container").empty();
+    console.log(latestNews);
+    
+    // Parsear contenido
+    latestNews.content = JSON.parse(latestNews.content);
+    
+    console.log(latestNews.content);
 
     // Cargar su contenido
     latestNews.content.forEach(row => {
@@ -278,15 +287,18 @@ $("#publish-config").on("click", async function() {
   
   // Obtener noticias
   let savedNews = await obtenerElementos("news");
+  console.log(savedNews);
 
-  if (newsLS.length == 0) {
+
+  if (savedNews.length == 0) {
     showMessage("S'ha de guardar la noticia abans de publicar-la.", "show");
     return;
   }
 
   // Obtener última la notícia guardada
-  let latestNews = obtenerElemento("news", savedNews.length - 1);
+  let latestNews = await obtenerElemento("news", savedNews.length);
 
+  console.log(latestNews);
   if (latestNews.state == 1) {
     showMessage("La notícia més recent ja està publicada.", "show");
     return;
@@ -294,9 +306,13 @@ $("#publish-config").on("click", async function() {
 
   latestNews.state = 1;  // Cambiar estado a publicado
   latestNews.modification_date = new Date();
+  latestNews.content = JSON.stringify(latestNews.content);
 
-  localStorage.setItem('news', JSON.stringify(newsLS));
+  await actualizarElemento("news", latestNews.id.toString(), latestNews);
   showMessage("La notícia s'ha publicat correctament.", "show");
+  
+  // Redirigir a la página noticias
+  window.location.href = "../src/noticies.html";
 });
 
 
@@ -329,14 +345,14 @@ $("#delete-config").on("click", async function() {
   
   // Si hay un ID en la URL, eliminar la noticia con ese ID
   if (newsId) {
-    eliminarElemento("news", newsId);
+    await eliminarElemento("news", newsId.toString());
   } else {
     // Si no hay ID, eliminar la última noticia del array de LS
-    eliminarElemento("news", savedNews.length - 1);
+    await eliminarElemento("news", savedNews.length);
   }
 
   showMessage("La notícia s'ha eliminat correctament.", "show");
-
+    
   // Redirigir a la página noticias
   window.location.href = "../src/noticies.html";
 });

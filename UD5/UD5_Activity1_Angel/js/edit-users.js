@@ -1,4 +1,7 @@
-$(document).ready(function () {
+import { obtenerElementos, addElemento, actualizarElemento, eliminarElemento, obtenerElemento } from "../js/gestionDB.js";
+
+
+$(document).ready(async function () {
 
   let loggedUser = localStorage.getItem('loggedUser');
   // Si no ha iniciado sesión o no tiene permisos, salir de la página
@@ -45,10 +48,8 @@ $(document).ready(function () {
   $("main").append(usersOpenSection);
 
   // Obtener array users LS
-  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let users = await obtenerElementos("users");
 
-  // users.push(new_user);
-  // localStorage.setItem('users', JSON.stringify(users));
 
   let userTableDesktopHead = `
       <table class="user-table-desktop">

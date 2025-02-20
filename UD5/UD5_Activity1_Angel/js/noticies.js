@@ -1,4 +1,6 @@
-$(function() {
+import { obtenerElementos, addElemento, actualizarElemento, eliminarElemento, obtenerElemento } from "../js/gestionDB.js";
+
+$(async function() {
   /* GESTIÓN MOSTRAR NOTICIAS */
 
   let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
@@ -11,22 +13,30 @@ $(function() {
   }
 
   // Obtener noticias de LS
-  let newsLS = JSON.parse(localStorage.getItem('news')) || [];
+  let savedNews = await obtenerElementos("news");
 
   function showNews() {
     const section = $('#section-noticies');
     section.empty();
 
-    if (newsLS.length == 0) {
+    if (savedNews.length == 0) {
       section.append('<p>No hi ha notícies.</p>');
       return;
     }
 
-    newsLS.forEach(news => {
+    savedNews.forEach(news => {
       let stateText = news.state == 1 ? 'Publicat' : 'Esborrany';
 
       // Si el usuario no tiene permisos y la noticia está en borrador, saltarla
       if (news.state == 0 && (!loggedUser || !loggedUser.edit_news)) {
+        return;
+      }
+    
+      // Parsear contenido
+      news.content = JSON.parse(news.content);
+
+      if (!Array.isArray(news.content)) {
+        console.error("El contenido de la noticia no es un array:", news.content);
         return;
       }
 
