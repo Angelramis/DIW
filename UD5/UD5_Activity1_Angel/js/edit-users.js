@@ -101,8 +101,8 @@ $(document).ready(async function () {
             <td>Gestió</td>
             <td>
               <div class="user-management-div">
-                <a href="">Editar</a> <!-- Verificación para no poder eliminar usuario admin -->
-                ${user.name != "admin" ? `<a href="">Eliminar</a>` : ""} 
+                <a href="./edit-user.html?id=${user.id}">Editar</a> <!-- Verificación para no poder eliminar usuario admin -->
+                ${user.name != "admin" ? `<a>Eliminar</a>` : ""} 
               </div>
             </td>
           </tr>
@@ -119,8 +119,8 @@ $(document).ready(async function () {
             <td>${user.active ? "Sí" : "No"}</td>
             <td class="user-management-td">
               <div class="user-management-div">
-                <a href="">Editar</a>
-                 ${user.name != "admin" ? `<a href="">Eliminar</a>` : ""} 
+                <a href="./edit-user.html?id=${user.id}">Editar</a>
+                 ${user.name != "admin" ? `<a>Eliminar</a>` : ""} 
               </div>
             </td>
           </tr>`;

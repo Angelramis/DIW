@@ -23,7 +23,7 @@ $(async function() {
   
   // Parsear contenido
   news.content = JSON.parse(news.content);
-
+  
   let article = `
     <article class="article_noticia flex flex-col gap-5">
       <div class="encapcalat_noticia encapcalat_individual text-left">

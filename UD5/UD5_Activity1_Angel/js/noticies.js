@@ -35,11 +35,6 @@ $(async function() {
       // Parsear contenido
       news.content = JSON.parse(news.content);
 
-      if (!Array.isArray(news.content)) {
-        console.error("El contenido de la noticia no es un array:", news.content);
-        return;
-      }
-
       // Buscar la primera imagen en contenido de noticia como imagen principal
       let foundImage = '../assets/noticies/noticia_defecte.png';
       news.content.some(row => {

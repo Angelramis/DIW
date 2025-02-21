@@ -200,7 +200,7 @@ $(function() {
 
     // Verificación rellando campos
     if (!title || !subtitle || !author || !date || !content.length) {
-      showMessage("No hi poden haver camps buits. Es requireix al menys una imatge.", "show");
+      showMessage("No hi poden haver camps buits.", "show");
       return;
     }
 
@@ -231,32 +231,42 @@ $(function() {
   // Al clicar CARGAR CONFIGURACIÓN
   $('#load-config').on('click', async function() {
 
-    // Obtener noticias
-    let savedNews = await obtenerElementos("news");
+  // Obtener noticias
+  let savedNews = await obtenerElementos("news");
 
-    if (savedNews.length == 0) {
-      showMessage("No hi ha notícies guardades.", "show");
-      return;
-    }
 
-    // Obtener última la notícia guardada
-    let latestNews = await obtenerElemento("news", savedNews.length);
+  // Obtener el ID de la noticia si se entra por editar
+  let urlParams = new URLSearchParams(window.location.search);
+  let newsId = urlParams.get('id');  
 
-    $('input[name="news-title"]').val(latestNews.title);
-    $('input[name="news-subtitle"]').val(latestNews.subtitle);
-    $('input[name="news-author"]').val(latestNews.author);
-    $('input[name="news-date"]').val(latestNews.modification_date);
+  if (savedNews.length == 0) {
+    showMessage("No hi ha notícies guardades.", "show");
+    return;
+  }
+
+  let news = null;
+
+  // Si hay un ID en la URL, obtener la noticia con ese ID
+  if (newsId) {
+    news = await obtenerElemento("news", newsId.toString());
+  } else {
+     // Obtener última la notícia guardada
+    news = await obtenerElemento("news", savedNews.length.toString());
+  }
+
+    $('input[name="news-title"]').val(news.title);
+    $('input[name="news-subtitle"]').val(news.subtitle);
+    $('input[name="news-author"]').val(news.author);
+    $('input[name="news-date"]').val(news.modification_date);
 
     $(".row-container").empty();
-    console.log(latestNews);
     
     // Parsear contenido
-    latestNews.content = JSON.parse(latestNews.content);
+    news.content = JSON.parse(news.content);
     
-    console.log(latestNews.content);
 
     // Cargar su contenido
-    latestNews.content.forEach(row => {
+    news.content.forEach(row => {
       let newRow = '<div class="row">';
       row.forEach(column => {
         newRow += column.length > 1 ? `<div class="column half">` : `<div class="column">`;
@@ -287,7 +297,6 @@ $("#publish-config").on("click", async function() {
   
   // Obtener noticias
   let savedNews = await obtenerElementos("news");
-  console.log(savedNews);
 
 
   if (savedNews.length == 0) {
@@ -295,20 +304,37 @@ $("#publish-config").on("click", async function() {
     return;
   }
 
-  // Obtener última la notícia guardada
-  let latestNews = await obtenerElemento("news", savedNews.length);
+  // Obtener el ID de la noticia si se entra por editar
+  let urlParams = new URLSearchParams(window.location.search);
+  let newsId = urlParams.get('id');  
 
-  console.log(latestNews);
-  if (latestNews.state == 1) {
+  if (savedNews.length == 0) {
+    showMessage("No hi ha notícies guardades.", "show");
+    return;
+  }
+
+  let news = null;
+
+  // Si hay un ID en la URL, obtener la noticia con ese ID
+  if (newsId) {
+    news = await obtenerElemento("news", newsId.toString());
+  } else {
+     // Obtener última la notícia guardada
+    news = await obtenerElemento("news", savedNews.length.toString());
+  }
+
+  console.log(news);
+
+  if (news.state == 1) {
     showMessage("La notícia més recent ja està publicada.", "show");
     return;
   }
 
-  latestNews.state = 1;  // Cambiar estado a publicado
-  latestNews.modification_date = new Date();
-  latestNews.content = JSON.stringify(latestNews.content);
+  news.state = 1;  // Cambiar estado a publicado
+  news.modification_date = new Date();
+  news.content = news.content;
 
-  await actualizarElemento("news", latestNews.id.toString(), latestNews);
+  await actualizarElemento("news", news.id.toString(), news);
   showMessage("La notícia s'ha publicat correctament.", "show");
   
   // Redirigir a la página noticias
