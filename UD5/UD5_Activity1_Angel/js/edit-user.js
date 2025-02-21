@@ -16,7 +16,7 @@ $(async function() {
 
     if (userExistente) {
       // Rellenar inputs
-      $('input[name="user-name"]').val(userExistente.username);
+      $('input[name="user-name"]').val(userExistente.name);
       $('input[name="user-email"]').val(userExistente.email);
       $('input[name="edit_news"]').prop("checked", userExistente.edit_news);
       $('input[name="edit_users"]').prop("checked", userExistente.edit_users);
@@ -36,7 +36,7 @@ $("#edit-user-form").on("submit", async function(e) {
   e.preventDefault();
 
   // Obtener datos del formulario
-  let username = $('input[name="user-name"]').val().trim();
+  let name = $('input[name="user-name"]').val().trim();
   let email = $('input[name="user-email"]').val().trim();
   let edit_news = $('input[name="edit_news"]').prop("checked");
   let edit_users = $('input[name="edit_users"]').prop("checked");
@@ -44,19 +44,33 @@ $("#edit-user-form").on("submit", async function(e) {
   let active = $('input[name="active"]').prop("checked");
 
   // Verificación de campos vacíos
-  if (username === "" || email === "") {
+  if (name === "" || email === "") {
     showMessage("No hi poden haver camps buits.", "show");
     return;
   }
 
+  if(name.length < 3) {
+    showMessage("El nom ha de tenir almenys 3 caràcters.", "show");
+    return;
+  }
+
+  if (!validateEmail(email)) {
+    showMessage("El correu ha de tenir una sintaxis correcta.", "show");
+    return;
+  }
+
+
   // Si el usuario ya existe, actualización
   if (userExistente) {
     let updatedUser = {
-      username: username,
+      name: name,
       email: email,
+      password_hash: userExistente.password_hash,
+      salt: userExistente.salt,
       edit_news: edit_news,
       edit_users: edit_users,
       edit_bone_files: edit_bone_files,
+      is_first_login: userExistente.is_first_login,
       active: active
     };
 
@@ -69,17 +83,19 @@ $("#edit-user-form").on("submit", async function(e) {
     let savedUsers = await obtenerElementos("users");
     let newUser = {
       id: (savedUsers.length + 1).toString(),
-      username: username,
+      name: name,
       email: email,
-      password: "Ramis.20",
+      password_hash: "961408558045f2698f3f273e593aade113310696f8b85dcb5f4887d26118e8de",
+      salt: "85da85a60855172eb579e23b282169c4",
       edit_news: edit_news,
       edit_users: edit_users,
       edit_bone_files: edit_bone_files,
+      is_first_login: true,
       active: active
     };
 
     // Crear un nuevo usuario en Firestore
-    await addElemento("users", newUser.id, newUser);
+    addElemento("users", newUser.id, newUser);
     showMessage("Usuari creat correctament.", "show");
   }
 });

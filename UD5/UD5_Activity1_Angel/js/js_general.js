@@ -30,6 +30,12 @@ function showMessage(message, state) {
   textMessage.text(message);
 }
 
+// Función para validar sintaxis de email, retorna un boolean
+function validateEmail(email) {
+  let re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
+
 
 /* ACCESSIBILITY */
 

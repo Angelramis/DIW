@@ -47,9 +47,8 @@ $(document).ready(async function () {
   $("main").append(permissionsLegend);
   $("main").append(usersOpenSection);
 
-  // Obtener array users LS
+  // Obtener users Firebase
   let users = await obtenerElementos("users");
-
 
   let userTableDesktopHead = `
       <table class="user-table-desktop">
@@ -102,7 +101,7 @@ $(document).ready(async function () {
             <td>
               <div class="user-management-div">
                 <a href="./edit-user.html?id=${user.id}">Editar</a> <!-- Verificación para no poder eliminar usuario admin -->
-                ${user.name != "admin" ? `<a>Eliminar</a>` : ""} 
+                ${user.name != "admin" ? `<button data-id="${user.id}" id="boton-eliminar">Eliminar</button>` : ""} 
               </div>
             </td>
           </tr>
@@ -120,7 +119,7 @@ $(document).ready(async function () {
             <td class="user-management-td">
               <div class="user-management-div">
                 <a href="./edit-user.html?id=${user.id}">Editar</a>
-                 ${user.name != "admin" ? `<a>Eliminar</a>` : ""} 
+                 ${user.name != "admin" ? `<button data-id="${user.id}" id="boton-eliminar">Eliminar</button>` : ""} 
               </div>
             </td>
           </tr>`;
@@ -134,4 +133,21 @@ $(document).ready(async function () {
 
   // Añadir el cierre del section al html
   $("main").append(usersCloseSection);
+
+
+
+  // Evento para eliminar usuario
+  $("#boton-eliminar").on("click", async function(e) {
+    console.log("clicado");
+    let userId = $(this).data("id");
+
+    if (confirm("Estás segur que vols eliminar l'usuari?")) {
+      await eliminarElemento("users", userId.toString());
+      //showMessage("Usuari eliminat correctament.", "show");
+      location.reload(); // Recargar página
+    }
+  });
+
+
+
 });

@@ -1,5 +1,8 @@
-$(document).ready(function () {
-  console.log(JSON.parse(localStorage.getItem('users')));
+import { obtenerElementos, obtenerElemento } from "../js/gestionDB.js";
+
+$(document).ready(async function () {
+  // Obtener usuarios firebase
+  let users = await obtenerElementos("users");
   
   /* Gestión formulario LOGIN */
   $("#formLogin").on("submit", function (e) {
@@ -11,7 +14,7 @@ $(document).ready(function () {
     let errorHTML = $("#text_error");
 
     // Obtener usuarios en LS
-    let users = JSON.parse(localStorage.getItem('users'));
+    //let users = JSON.parse(localStorage.getItem('users'));
 
     // Vaciar parágrafo de error
     errorHTML.html("");
