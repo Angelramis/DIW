@@ -22,14 +22,18 @@ function showMessage(message, state) {
     if (state == "show") {
     messageDiv.css("display", "flex");
     messageParent.css("display", "flex");
-    } else if (state ="hide") {
+    } else if (state =="hide") {
       messageDiv.css("display", "none");
       messageParent.css("display", "none");
-    } else if (state = "options") {
-      // Mostrar boton cancelar.
     }
   }
   textMessage.text(message);
+}
+
+// Función para validar sintaxis de email, retorna boolean
+function validateEmail(email) {
+  let re = /\S+@\S+\.\S+/;
+  return re.test(email);
 }
 
 

@@ -50,7 +50,6 @@ $(async function() {
     // Cargar su contenido
     $('input[name="news-title"]').val(newsToEdit.title);
     $('input[name="news-subtitle"]').val(newsToEdit.subtitle);
-    $('input[name="news-author"]').val(newsToEdit.author);
     $('input[name="news-date"]').val(newsToEdit.creation_date);
 
     // Parsear contenido
@@ -177,7 +176,6 @@ $(function() {
     // Obtener datos
     let title = $('input[name="news-title"]').val();
     let subtitle = $('input[name="news-subtitle"]').val();
-    let author = $('input[name="news-author"]').val();
     let date = $('input[name="news-date"]').val();
     let content = [];
 
@@ -199,7 +197,7 @@ $(function() {
     });
 
     // Verificación rellando campos
-    if (!title || !subtitle || !author || !date || !content.length) {
+    if (!title || !subtitle || !date || !content.length) {
       showMessage("No hi poden haver camps buits.", "show");
       return;
     }
@@ -211,7 +209,7 @@ $(function() {
       id: (savedNews.length + 1).toString(),
       title: title,
       subtitle: subtitle,
-      author: author,
+      author: loggedUser.name,
       creation_date: date,
       modification_date: new Date(),
       content: JSON.stringify(content),
@@ -256,7 +254,6 @@ $(function() {
 
     $('input[name="news-title"]').val(news.title);
     $('input[name="news-subtitle"]').val(news.subtitle);
-    $('input[name="news-author"]').val(news.author);
     $('input[name="news-date"]').val(news.modification_date);
 
     $(".row-container").empty();

@@ -103,7 +103,7 @@ body {
   padding: 0;
 }
 
-.user-management-div > a, #boton-eliminar {
+.user-management-div > a, .boton-eliminar {
   font-weight: bold;
   border-right: 1px solid #0e0e0e;
   border-left: 1px solid #0e0e0e;
@@ -112,7 +112,14 @@ body {
   background-color: #FFE602;
 }
 
-.user-management-div > a:hover {
+.boton-eliminar {
+  border-radius: 0px;
+  margin: 0;
+  border: none;
+  background-color: #cf3d3d;
+}
+
+.user-management-div > a:hover, .boton-eliminar:hover {
   transition: 0.3s;
   box-shadow: 0 0 5px 0 #0e0e0e;
   cursor: pointer;

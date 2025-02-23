@@ -22,7 +22,7 @@ function showMessage(message, state) {
     if (state == "show") {
     messageDiv.css("display", "flex");
     messageParent.css("display", "flex");
-    } else if (state ="hide") {
+    } else if (state =="hide") {
       messageDiv.css("display", "none");
       messageParent.css("display", "none");
     }
@@ -30,7 +30,7 @@ function showMessage(message, state) {
   textMessage.text(message);
 }
 
-// Función para validar sintaxis de email, retorna un boolean
+// Función para validar sintaxis de email, retorna boolean
 function validateEmail(email) {
   let re = /\S+@\S+\.\S+/;
   return re.test(email);

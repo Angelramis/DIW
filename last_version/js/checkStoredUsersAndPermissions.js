@@ -1,6 +1,10 @@
+import { obtenerElementos, addElemento, obtenerElemento } from "./gestionDB.js";
+
+
 /* Incicializar elementos */
-let logout_a = "";
 let admin_a = "";
+let edit_news_a = "";
+let logout_a = "";
 let login_bar = "";
 
 /* Función para comprobar si el usuario no ha iniciado sesión,
@@ -12,7 +16,7 @@ function checkLogout() {
   logout_a = $(".logout-bar");
   login_bar = $(".login-bar");
 
-  loggedUser = localStorage.getItem('loggedUser');
+  let loggedUser = localStorage.getItem('loggedUser');
 
   // Si no está logeado
   if (!loggedUser) {
@@ -38,15 +42,18 @@ function checkLogout() {
 }
 
 /* Verificar si hay usuarios en localStorage */
-$(document).ready(function () {
+$(document).ready(async function () {
   
   checkLogout(logout_a, admin_a);
+
+  let users = await obtenerElementos("users");
+
   // Si no existen usuarios guardados, crear uno por defecto
-  if (!localStorage.getItem('users')) {
+  if (users.length == 0) {
 
     // Creación usuario por defecto
     let defaultUser = {
-      id: 1,
+      id: (1).toString(),
       name: "admin",
       email: "desenvolupador@iesjoanramis.org", // Directamente hash y salt
       password_hash: "961408558045f2698f3f273e593aade113310696f8b85dcb5f4887d26118e8de",
@@ -58,12 +65,11 @@ $(document).ready(function () {
       is_first_login: true
     };
     
-    // Guardar usuario por defecto en LS
-    localStorage.setItem('users', JSON.stringify([defaultUser]));
-    console.log(defaultUser);
+    // Guardar usuario por defecto en Firebase
+    addElemento("users", defaultUser.id, defaultUser);
   }
 
-  
+
   // Al pulsar logout en header, si hay un usuario loggeado, deslogear
   $(logout_a).on("click", function (event) {
     let loggedUser = localStorage.getItem('loggedUser');
@@ -73,6 +79,9 @@ $(document).ready(function () {
       console.log("Sesión cerrada");
       
       checkLogout();
+
+      // Recargar página
+      location.reload();
     }
 
   });

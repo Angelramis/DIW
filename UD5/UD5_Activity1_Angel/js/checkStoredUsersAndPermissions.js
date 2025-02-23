@@ -79,6 +79,9 @@ $(document).ready(async function () {
       console.log("Sesión cerrada");
       
       checkLogout();
+
+      // Recargar página
+      location.reload();
     }
 
   });

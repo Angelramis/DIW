@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aula Museu - Sa Balena</title>
   <link rel="stylesheet" href="../css/sass_styles.css">
-  <link rel="stylesheet" href="../css/edit-users.css">
+  <link rel="stylesheet" href="../css/edit-user.css">
 </head>
 <body>
   <header>
@@ -83,7 +83,7 @@
             <p>Tancar sessió</p>
           </a>
   
-          <a href="" class="user-admin-bar" id="edit-users-a">
+          <a href="../views/edit_users.html" class="user-admin-bar" id="edit-users-a">
             <img src="../assets/icons/admin.png" alt="user-admin" class="icon">
             <p>Administració d'usuaris</p>
           </a>
@@ -100,10 +100,54 @@
     </nav>
   </header>
 
+  <div class="message-parent" id="message-parent">
+    <div class="message-div" id="message-div">
+      <p id="text-message"></p>
+      <button class="call-to-action-button" onclick='showMessage("", "hide")'>Acceptar</button>
+    </div>
+  </div>
+
 <main>
-  
+  <div class="titulo">
+    <h1>Gestió Usuari</h1>
+  </div>
 
+  <section class="edit-news-section">
 
+    <form method="POST" id="edit-user-form" class="user-form">
+      <label for="news-title">Nom </label>
+      <input type="text" name="user-name">
+      
+      <label for="news-subtitle">Correu </label>
+      <input type="text" name="user-email">
+
+      <hr style="margin: 10px 0;">
+
+      <label for="news-author">Permisos </label>
+
+      <nav class="nav-checkboxes">
+        <p>Editar notícies </p>
+        <input type="checkbox" value="edit_news" name="edit_news">
+
+        <p>Editar usuaris </p>
+        <input type="checkbox" value="edit_users" name="edit_users">
+
+        <p>Editar fitxes d'ossos </p>
+        <input type="checkbox" value="edit_bone_files" name="edit_bone_files">
+
+        <p>Actiu </p>
+        <input type="checkbox" value="active" name="active" checked>
+      </nav>
+
+      <input type="submit" value="Guardar" class="call-to-action-button">
+    </form>
+
+    <a href="./edit_users.html" >
+      <button class="call-to-action-button">Tornar enrrere</button>
+    </a>
+  </section>
+
+</main>
   
   <nav class="accessibility_container">
     <div class="accessibility_access">
@@ -170,7 +214,7 @@
     </div>
   </nav>
 
-</main>
+
   <footer>
     <p>IES Joan Ramis i Ramis</p>
     <p>Projecte Aula Museu - La Balena</p>
@@ -179,7 +223,7 @@
   <script src="../js/jquery-3.7.1.min.js"></script>
   <script src="../js/js_general.js"></script>
   <script type="module" src="../js/gestionDB.js"></script>
+  <script type="module" src="../js/edit-user.js"></script>
   <script type="module" src="../js/checkStoredUsersAndPermissions.js"></script>
-  <script type="module" src="../js/edit-users.js"></script>
 </body>
 </html>

@@ -41,6 +41,12 @@ $(document).ready(async function () {
       return;
     }
 
+    // Validar que el usuario esté activo
+    if (!user.active) {
+      showError(errorHTML, "L'administrador ha deshabilitat l'usuari. No es pot iniciar sessió.");
+      return;
+    }
+
     // Guardar el usuario en LS para tener sus datos en todas las páginas.
     // Cambios de usuario hacerlos en LS users.
     localStorage.setItem('loggedUser', JSON.stringify(user));

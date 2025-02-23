@@ -1,7 +1,10 @@
-$(function() {
+import { obtenerElementos, obtenerElemento } from "../js/gestionDB.js";
+
+$(async function() {
   /* GESTIÓN MOSTRAR NOTÍCIA */
 
-  let newsLS = JSON.parse(localStorage.getItem('news')) || [];
+  // Obtener noticia
+  let savedNews = await obtenerElementos("news");
 
   // Obtener id de la noticia desde la url enviada
   function obtenerParamURL(param) {
@@ -10,14 +13,17 @@ $(function() {
   }
 
   let newsId = obtenerParamURL('id');
-  let news = newsLS.find(n => n.id == newsId);
+  let news = savedNews.find(n => n.id == newsId);
 
   // Si no se encuentra
   if (!news) {
     $('main').html('<p class="text-center text-red-500">Notícia no trobada.</p>');
     return;
   }
-
+  
+  // Parsear contenido
+  news.content = JSON.parse(news.content);
+  
   let article = `
     <article class="article_noticia flex flex-col gap-5">
       <div class="encapcalat_noticia encapcalat_individual text-left">
@@ -25,7 +31,7 @@ $(function() {
         <h3 class="subtitol_noticia">${news.subtitle || ''}</h3>
         <p class="text-left">Autor: ${news.author}</p>
       </div>
-
+      
       ${news.content.map(row => { // Cargar contenido noticia
         return `<div class='contingut_noticia_costat'>${row.map(column => {
           return `<div class='column'>${column.map(element => {
