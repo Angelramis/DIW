@@ -129,7 +129,6 @@ $(document).ready(async function () {
 
   await mostrarUsuarios();
 
-
   // Evento para eliminar usuario
   $(".boton-eliminar").on("click", async function(e) {
     console.log("clicado");

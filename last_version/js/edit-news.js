@@ -32,11 +32,8 @@ function editParagraph() {
 }
 
 
+// Gestión obtener y cargar noticia si se ha entrado por botón editar noticia
 $(async function() {
-  
-  // Gestión obtener y cargar noticia si se 
-  // ha entrado por botón editar noticia
-
   // Obtener noticias
   let savedNews = await obtenerElementos("news");
   
@@ -65,7 +62,6 @@ $(async function() {
             newRow += `<div class="element"><img src="${content}" alt="Imagen"></div>`;
           } else {
             newRow += `<div class="element"><p class="editable">${content}</p></div>`;
-             
           }
         });
         newRow += `</div>`;
@@ -77,10 +73,8 @@ $(async function() {
 });
 
 
-
 $(function() {
   // Gestión de noticias
-
   let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
   
   // Si el usuario no tiene permisos de editar noticias / no iniciado sesión
@@ -194,9 +188,10 @@ $(function() {
         rowContent.push(columnContent);
       });
       content.push(rowContent);
+      console.log("Contenido: ", rowContent);
     });
 
-    // Verificación rellando campos
+    // Verificación rellenado campos
     if (!title || !subtitle || !date || !content.length) {
       showMessage("No hi poden haver camps buits.", "show");
       return;
@@ -225,67 +220,63 @@ $(function() {
   });
 
 
-
   // Al clicar CARGAR CONFIGURACIÓN
   $('#load-config').on('click', async function() {
+    // Obtener noticias
+    let savedNews = await obtenerElementos("news");
 
-  // Obtener noticias
-  let savedNews = await obtenerElementos("news");
+    // Obtener el ID de la noticia si se entra por editar
+    let urlParams = new URLSearchParams(window.location.search);
+    let newsId = urlParams.get('id');  
 
+    if (savedNews.length == 0) {
+      showMessage("No hi ha notícies guardades.", "show");
+      return;
+    }
 
-  // Obtener el ID de la noticia si se entra por editar
-  let urlParams = new URLSearchParams(window.location.search);
-  let newsId = urlParams.get('id');  
+    let news = null;
 
-  if (savedNews.length == 0) {
-    showMessage("No hi ha notícies guardades.", "show");
-    return;
-  }
+    // Si hay un ID en la URL, obtener la noticia con ese ID
+    if (newsId) {
+      news = await obtenerElemento("news", newsId.toString());
+    } else {
+      // Obtener última la notícia guardada
+      news = await obtenerElemento("news", savedNews.length.toString());
+    }
 
-  let news = null;
+      $('input[name="news-title"]').val(news.title);
+      $('input[name="news-subtitle"]').val(news.subtitle);
+      $('input[name="news-date"]').val(news.modification_date);
 
-  // Si hay un ID en la URL, obtener la noticia con ese ID
-  if (newsId) {
-    news = await obtenerElemento("news", newsId.toString());
-  } else {
-     // Obtener última la notícia guardada
-    news = await obtenerElemento("news", savedNews.length.toString());
-  }
-
-    $('input[name="news-title"]').val(news.title);
-    $('input[name="news-subtitle"]').val(news.subtitle);
-    $('input[name="news-date"]').val(news.modification_date);
-
-    $(".row-container").empty();
-    
-    // Parsear contenido
-    news.content = JSON.parse(news.content);
-    
-
-    // Cargar su contenido
-    news.content.forEach(row => {
-      let newRow = '<div class="row">';
-      row.forEach(column => {
-        newRow += column.length > 1 ? `<div class="column half">` : `<div class="column">`;
-        column.forEach(content => {
-          if (content.includes('data:image')) {
-            newRow += `<div class="element"><img src="${content}" alt="Imagen"></div>`;
-          } else {
-            newRow += `<div class="element"><p class="editable">${content}</p></div>`;
-            newRow.on('click', editParagraph);
-          }
+      $(".row-container").empty();
+      
+      // Parsear contenido
+      news.content = JSON.parse(news.content);
+      
+      // Cargar su contenido
+      news.content.forEach(row => {
+        let newRow = '<div class="row">';
+        row.forEach(column => {
+          newRow += column.length > 1 ? `<div class="column half">` : `<div class="column">`;
+          column.forEach(content => {
+            if (content.includes('data:image')) {
+              newRow += `<div class="element"><img src="${content}" alt="Imagen"></div>`;
+            } else {
+              newRow += `<div class="element"><p class="editable">${content}</p></div>`;
+              newRow.on('click', editParagraph);
+            }
+          });
+          newRow += `</div>`;
         });
-        newRow += `</div>`;
+        newRow += `<button class="delete-row-btn">Eliminar fila</button></div>`;
+        $(".row-container").append(newRow);
       });
-      newRow += `<button class="delete-row-btn">Eliminar fila</button></div>`;
-      $(".row-container").append(newRow);
+
+      initializeDroppable();
+      initializeDeleteButtons();
     });
 
     initializeDroppable();
-    initializeDeleteButtons();
-  });
-
-  initializeDroppable();
 });
 
 
@@ -294,7 +285,6 @@ $("#publish-config").on("click", async function() {
   
   // Obtener noticias
   let savedNews = await obtenerElementos("news");
-
 
   if (savedNews.length == 0) {
     showMessage("S'ha de guardar la noticia abans de publicar-la.", "show");
@@ -335,7 +325,7 @@ $("#publish-config").on("click", async function() {
   showMessage("La notícia s'ha publicat correctament.", "show");
   
   // Redirigir a la página noticias
-  window.location.href = "../src/noticies.html";
+  window.location.href = "../views/noticies.html";
 });
 
 
@@ -375,7 +365,7 @@ $("#delete-config").on("click", async function() {
   }
 
   showMessage("La notícia s'ha eliminat correctament.", "show");
-    
+  
   // Redirigir a la página noticias
-  window.location.href = "../src/noticies.html";
+  window.location.href = "../views/noticies.html";
 });

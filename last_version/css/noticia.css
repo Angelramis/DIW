@@ -1,0 +1,28 @@
+
+main {
+  width: 100%;
+}
+
+.article-noticia {
+  width: 90vw;
+}
+
+.encapcalat-noticia {
+  text-align: left;
+}
+
+.img-noticia {
+  width: 100%;
+  max-width: 400px;
+}
+
+
+/*Media queries*/
+/*Desktop*/
+@media screen and (min-width: 825px) {
+  
+  .img-noticia {
+    width: 450px;
+  }
+
+}
