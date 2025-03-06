@@ -16,10 +16,10 @@ $(async function() {
   let savedNews = await obtenerElementos("news");
 
   async function mostrarNoticias(filtro = "") {
-    const section = $("#section-noticies");
+    let section = $("#section-noticies");
     section.empty();
 
-    // Filtrar noticias si se hay texto en buscador
+    // Filtrar noticias si hay texto en buscador
     let filteredNews = savedNews.filter(news =>
       news.title.toLowerCase().includes(filtro.toLowerCase())
     );
@@ -49,7 +49,7 @@ $(async function() {
           column.some(item => {
             if (item.includes("data:image")) {
               foundImage = item;
-              return true;
+              return true; // surt de la funció
             }
             return false;
           })
@@ -57,23 +57,21 @@ $(async function() {
       );
 
       let newsItem = `
-        <article class="md:max-w-40">
+        <article class="noticia-article">
         ${loggedUser && loggedUser.edit_news ? ` 
           <a href="../views/edit-news.html?id=${news.id}">
-            <button type="button" class="call-to-action-button h-12 w-20">
-              <img src="../assets/icons/edit.png" alt="Editar notícia" class="w-10">
+            <button type="button" class="call-to-action-button button-editar">
+              <img src="../assets/icons/edit.png" alt="Editar notícia">
             </button>
           </a>
         ` : ""}
           <a href="noticia.html?id=${news.id}">
-            <div class="encapcalat_noticia">
-                <div class="titol_subtitol_div">
-                  <h2 class="titol_noticia">${news.title}</h2>
-                  <h3 class="subtitol_noticia">${news.subtitle || ""}</h3>
-                </div>
+            <div class="encapcalat-noticia">
+              <h2>${news.title}</h2>
+              <h3>${news.subtitle}</h3>
             </div>
-            <img src="${foundImage}" alt="Imatge de la notícia" class="pt-1 pb-1 max-w-96 shadow-standard">
-            ${loggedUser && loggedUser.edit_news ? `<p class="text-left pt-1">${stateText}</p>` : ""}
+            <img src="${foundImage}" alt="Imatge de la notícia" class="imatge-noticia">
+            ${loggedUser && loggedUser.edit_news ? `<p class="estat-noticia">${stateText}</p>` : ""}
           </a>
         </article>`;
       section.append(newsItem);

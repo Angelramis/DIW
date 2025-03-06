@@ -367,6 +367,9 @@ input {
   font-family: "Nunito Sans", "Open Sans";
   font-weight: bold;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .call-to-action-button:hover {

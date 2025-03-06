@@ -1,4 +1,4 @@
-import { obtenerElementos, obtenerElemento } from "../js/gestionDB.js";
+import { obtenerElementos} from "../js/gestionDB.js";
 
 $(async function() {
   /* GESTIÓN MOSTRAR NOTÍCIA */
@@ -17,27 +17,26 @@ $(async function() {
 
   // Si no se encuentra
   if (!news) {
-    $('main').html('<p class="text-center text-red-500">Notícia no trobada.</p>');
+    $('main').html('<p>Error: Notícia no trobada.</p>');
     return;
   }
   
-  // Parsear contenido
   news.content = JSON.parse(news.content);
   
   let article = `
-    <article class="article_noticia flex flex-col gap-5">
-      <div class="encapcalat_noticia encapcalat_individual text-left">
-        <h2 class="titol_noticia">${news.title}</h2>
-        <h3 class="subtitol_noticia">${news.subtitle || ''}</h3>
-        <p class="text-left">Autor: ${news.author}</p>
+    <article class='article-noticia'>
+      <div class="encapcalat-noticia">
+        <h2>${news.title}</h2>
+        <h3>${news.subtitle || ''}</h3>
+        <p>Autor: ${news.author}</p>
       </div>
       
       ${news.content.map(row => { // Cargar contenido noticia
-        return `<div class='contingut_noticia_costat'>${row.map(column => {
+        return `<div>${row.map(column => {
           return `<div class='column'>${column.map(element => {
-            return typeof element === 'string' && element.includes('data:image') 
-              ? `<img src='${element}' alt='Imatge de la notícia' class='img_noticia pt-1 pb-1 shadow-standard'/>`
-              : `<p class='p_noticia text-left'>${element}</p>`;
+            return typeof element == 'string' && element.includes('data:image') 
+              ? `<img src='${element}' alt='Imatge de la notícia' class='img-noticia'/>`
+              : `<p>${element}</p>`;
           }).join('')}</div>`;
         }).join('')}</div>`;
       }).join('')}

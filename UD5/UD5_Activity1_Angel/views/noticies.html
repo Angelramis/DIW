@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aula Museu - Sa Balena</title>
-  <link rel="stylesheet" href="../css/sass_common.css">
-  <link rel="stylesheet" href="output.css">
+  <link rel="stylesheet" href="../css/sass_styles.css">
+  <link rel="stylesheet" href="../css/noticies.css">
 </head>
 <body>
   <header>
@@ -33,7 +33,7 @@
           <p>El procés</p>
         </a>
 
-        <a href="../src/noticies.html" class="noticies-bar">
+        <a href="" class="noticies-bar">
           <img src="../assets/icons/news.png" alt="noticies icona" class="icon">
           <p>Notícies</p>
         </a>
@@ -64,6 +64,7 @@
         <img src="../assets/icons/menu.png" alt="Menu icon" class="icon">
       </a>
         
+ 
       </nav>
         
       <nav class="account-container-header">
@@ -91,22 +92,38 @@
             <img src="../assets/icons/edit-news.png" alt="Editar noticies icona" class="icon">
             <p>Administració de notícies</p>
           </a>
-          
+
         </nav>
       </nav>
     </div>
 
-      
     </nav>
   </header>
 
-  <main class="text-center mt-14 flex flex-col p-3 min-h-screen items-center gap-3">
+  <main>
+    <div class="titulo">
+      <h1>NOTÍCIES</h1>
+    </div> 
     
+    <nav>
+      <input type="search" placeholder="Cerca notícies per títol..." name="news-search" id="input-search">
+    </nav>
     
-    
+    <a href="../views/edit-news.html" class="create-news-a">
+      <button type="button" class="call-to-action-button">
+        <img src="../assets/icons/mas.png" alt="Editor notícies">Editor notícies
+      </button>
+    </a>
 
-     
-  </main>
+     <section id="section-noticies">
+      
+
+     </section>
+
+
+
+
+
 
     <nav class="accessibility_container">
       <div class="accessibility_access">
@@ -173,18 +190,18 @@
       </div>
     </nav>
 
- 
+  </main>
 
   <footer>
     <p>IES Joan Ramis i Ramis</p>
     <p>Projecte Aula Museu - La Balena</p>
   </footer>
-  
+
   <script src="../js/jquery-3.7.1.min.js"></script>
   <script src="../js/login_functions.js"></script>
   <script type="module" src="../js/gestionDB.js"></script>
   <script type="module" src="../js/checkStoredUsersAndPermissions.js"></script>
-  <script type="module" src="../js/noticia.js"></script>
+  <script type="module" src="../js/noticies.js"></script>
   <script src="../js/js_general.js"></script>
 </body>
 </html>

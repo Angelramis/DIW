@@ -14,13 +14,13 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const db = getFirestore();
+const db = getFirestore(app);
 
 
 // FUNCIONES
 
 // Función para obtener elementos en base de datos
-export async function obtenerElementos(nombreColeccion, busquedaElemento ="") {
+export async function obtenerElementos(nombreColeccion, busquedaElemento = "") {
   let coleccion = collection(db, nombreColeccion); // Obtener colección pasada
 
   let elementosSnapshot = await getDocs(coleccion); // Obtener elementos
@@ -51,7 +51,6 @@ export async function obtenerElementos(nombreColeccion, busquedaElemento ="") {
       elemento.title && elemento.title.toLowerCase().includes(nombreLowerCase)
     );
   }
-
 
   return elementos;
 }

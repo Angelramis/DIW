@@ -49,6 +49,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Nunito Sans', 'Open Sans';
   font-weight: bold;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -257,6 +260,8 @@ input {
 }
 
 
+
+
 /*Accesibility*/
 .accessibility_access {
   position: fixed;
@@ -460,6 +465,10 @@ form > input {
     margin: 10px;
     width: 190px;
     height: 60px;
+  }
+
+  .call-to-action-button > img {
+    width: 30px;
   }
 
   /*Accessibility*/
