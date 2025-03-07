@@ -269,11 +269,13 @@ header {
 .message-div {
   display: none;
   flex-direction: column;
+  justify-content: space-between;
   padding: 10px;
   background-color: #f0f0f0;
   border: 1px solid #0e0e0e;
   z-index: 5;
   border-radius: 5px;
+  max-width: 400px;
 }
 
 #text-message {
@@ -281,7 +283,7 @@ header {
 }
 
 .message-div > button {
-  margin-top: 90px;
+  max-width: 150px;
 }
 
 body {
@@ -564,6 +566,9 @@ form > input {
     margin: 10px;
     width: 190px;
     height: 60px;
+  }
+  .call-to-action-button > img {
+    width: 30px;
   }
   /*Accessibility*/
   .accessibility_menu_content {

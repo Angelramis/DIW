@@ -214,9 +214,7 @@ $(function() {
     console.log(newNews);
 
     // Guardar en Firestore
-    addElemento("news", newNews.id, newNews);
-
-    showMessage("Esborrany guardat.", "show");
+    await addElemento("news", newNews.id, newNews);
   });
 
 
@@ -282,7 +280,6 @@ $(function() {
 
 // Al clicar PUBLICAR CONFIGURACIÓN
 $("#publish-config").on("click", async function() {
-  
   // Obtener noticias
   let savedNews = await obtenerElementos("news");
 
@@ -321,9 +318,9 @@ $("#publish-config").on("click", async function() {
   news.modification_date = new Date();
   news.content = news.content;
 
+  // Publicar noticia
   await actualizarElemento("news", news.id.toString(), news);
-  showMessage("La notícia s'ha publicat correctament.", "show");
-  
+
   // Redirigir a la página noticias
   window.location.href = "../views/noticies.html";
 });
@@ -331,7 +328,6 @@ $("#publish-config").on("click", async function() {
 
 // Al clicar ELIMINAR NOTICIA
 $("#delete-config").on("click", async function() {
-
   // Obtener noticias
   let savedNews = await obtenerElementos("news");
 
@@ -363,8 +359,6 @@ $("#delete-config").on("click", async function() {
     // Si no hay ID, eliminar la última noticia del array de LS
     await eliminarElemento("news", savedNews.length);
   }
-
-  showMessage("La notícia s'ha eliminat correctament.", "show");
   
   // Redirigir a la página noticias
   window.location.href = "../views/noticies.html";
