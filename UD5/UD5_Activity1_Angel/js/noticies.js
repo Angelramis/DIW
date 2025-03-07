@@ -68,7 +68,7 @@ $(async function() {
           <a href="noticia.html?id=${news.id}">
             <div class="encapcalat-noticia">
               <h2>${news.title}</h2>
-              <h3>${news.subtitle}</h3>
+              <p>${news.subtitle}</p>
             </div>
             <img src="${foundImage}" alt="Imatge de la notícia" class="imatge-noticia">
             ${loggedUser && loggedUser.edit_news ? `<p class="estat-noticia">${stateText}</p>` : ""}

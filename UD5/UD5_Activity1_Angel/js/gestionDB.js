@@ -67,21 +67,28 @@ export async function obtenerElemento(nombreColeccion, idElemento) {
     if (docSnap.exists()) {
       return { id: docSnap.id, ...docSnap.data() };
     } else {
-      console.log("Elemento no existe");
+      showMessage("Error: l'element no existeix");
     }
   } catch (error) {
-    console.log("Error obteniendo documento: ", error);
+    showMessage("Error obtingent l'element: " + error, "show");
   }
 }
 
 // Añadir un elemento a Firestore
-export function addElemento(nombreColeccion, idElemento, elemento) {
+export async function addElemento(nombreColeccion, idElemento, elemento) {
   let coleccion = collection(db, nombreColeccion); // Obtener colección pasada
 
+  let errorGuardant = false;
+
   try {
-    setDoc(doc(coleccion, idElemento), elemento); 
+    await setDoc(doc(coleccion, idElemento), elemento); 
   } catch(error) {
-    console.log("Error guardando elemento: ", error);
+    showMessage("Error guardant l'element: " + error, "show");
+    errorGuardant = true;
+  }
+
+  if (errorGuardant == false) {
+    showMessage("L'element s'ha guardat correctament.", "show");
   }
 }
 
@@ -93,7 +100,7 @@ export async function eliminarElemento(nombreColeccion, idElemento) {
   try {
     await deleteDoc(doc(coleccion, idElemento));
   } catch(error) {
-    console.log("Error eliminando elemento: ", error);
+    showMessage("Error eliminant l'element: " + error, "show");
   }
 }
 
@@ -101,10 +108,16 @@ export async function eliminarElemento(nombreColeccion, idElemento) {
 export async function actualizarElemento(nombreColeccion, idElemento, elemento) {
   let coleccion = collection(db, nombreColeccion);
 
+  let errorPublicant = false;
+
   try {
     await updateDoc(doc(coleccion, idElemento), elemento);
   } catch (error) {
-    console.log("Error actualizando elemento: ", error);
+    showMessage("Error actualitzant l'element: " + error, "show");
+    errorPublicant = true;
+  }
+
+  if (errorPublicant == false) {
+    showMessage("L'element s'ha actualitzat correctament.", "show");
   }
 }
-
